@@ -14,12 +14,12 @@ export default function SideBar({ children }) {
 
             {location.pathname !== "/" ? (
                 <div className="flex">
-                    <nav className="flex flex-col border-2 border-slate-400 w-36">
+                    <nav className="flex flex-col border-r-2 border-black w-36">
                         <NavLink
                             to="/projects"
                             end
                             className={({ isActive }) =>
-                                isActive ? "bg-slate-300 text-center p-4" : "text-center p-4"
+                                isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4"
                             }
                         >
                             Projects
@@ -28,7 +28,7 @@ export default function SideBar({ children }) {
                             to="/technicians"
                             end
                             className={({ isActive }) =>
-                                isActive ? "bg-slate-300 text-center p-4" : "text-center p-4"
+                                isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4"
                             }
                         >
                             Technicians
@@ -37,7 +37,7 @@ export default function SideBar({ children }) {
                             to="/clients"
                             end
                             className={({ isActive }) =>
-                                isActive ? "bg-slate-300 text-center p-4" : "text-center p-4"
+                                isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4"
                             }
                         >
                             Clients
@@ -46,13 +46,13 @@ export default function SideBar({ children }) {
                             to="/managers"
                             end
                             className={({ isActive }) =>
-                                isActive ? "bg-slate-300 text-center p-4" : "text-center p-4"
+                                isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4"
                             }
                         >
                             Managers
                         </NavLink>
                     </nav>
-                    <main className=" h-screen w-full">{children}</main>
+                    <main className=" h-screen w-full flex flex-col flex-grow">{children}</main>
                 </div>
             ) : (
                 <main className="h-screen w-full">{children}</main>

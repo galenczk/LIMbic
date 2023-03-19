@@ -11,6 +11,24 @@ app.use(bodyParser.json());
 
 const db = require("./db-connector");
 
+/**
+ * **********************************PROJECT ROUTES*******************************************
+ */
+// ROUTE - GET ALL PROJECTS
+app.get("/projects", (req, res) => {
+    const query = "SELECT * FROM Projects;"
+    db.pool.query(query, (error, result) => {
+        if (!error){
+            res.send(JSON.stringify(result))
+        } else{
+            console.log(error)
+        }
+    })
+})
+
+
+
+
 
 
 /**
