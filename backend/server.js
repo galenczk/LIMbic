@@ -11,22 +11,7 @@ app.use(bodyParser.json());
 
 const db = require("./db-connector");
 
-/**
- * TEST INPUT
- */
-app.post("/numbers", (req, res) => {
-    const number = 42;
 
-    const query = "INSERT INTO Numbers (numbers) VALUES (?)";
-
-    db.pool.query(query, [number], (error) => {
-        if (!error) {
-            res.status(201).send(`Insert of ${number} successful!`);
-        } else {
-            console.log(error);
-        }
-    });
-});
 
 /**
  * ERROR HANDLING

@@ -1,0 +1,26 @@
+Frontend:
+    Pages:
+        ☐ LandingPage
+        ☐ Projects dashboard
+        ☐ Clients dashboard
+        ☐ Technicians dashboard
+        ☐ Managers dashboard
+    Add/Edit pages:
+        ☐ Projects
+        ☐ Clients
+        ☐ Technicians
+        ☐ Managers
+
+   
+
+Database:
+    ☐ Fill in fake data to all tables, maybe 5 rows each
+        projects can have same 3-5 samples
+    
+
+Backend:
+
+
+Nice-to-haves:
+    ☐ Create complex project number from date (YYYY00001)
+    ☐ Make sidebar collapseable with icons to replace page titles 
