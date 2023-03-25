@@ -7,7 +7,7 @@ export default function SideBar({ children }) {
     return (
         <div className="">
             <div className="sticky top-0 z-50">
-                <header className="bg-slate-800 text-white p-2">
+                <header className="bg-stone-700 text-white p-2">
                     EnviroLab - Analytical Laboratory Database Management
                 </header>
             </div>
@@ -25,7 +25,7 @@ export default function SideBar({ children }) {
                             Projects
                         </NavLink>
                         <NavLink
-                            to="/technicians"
+                            to="/techs"
                             end
                             className={({ isActive }) =>
                                 isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4"

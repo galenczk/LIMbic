@@ -1,26 +1,22 @@
-Frontend:
-    Pages:
-        ☐ LandingPage
-        ☐ Projects dashboard
-        ☐ Clients dashboard
-        ☐ Technicians dashboard
-        ☐ Managers dashboard
-    Add/Edit pages:
-        ☐ Projects
-        ☐ Clients
-        ☐ Technicians
-        ☐ Managers
+☐ Prioritize baseline functionality being in place before the start of school again.
 
-   
+    ☐ Create details pages for entities that need them
+    ☐ Create add/edit pages for Projects
+    ☐ Make foriegn keys in Projects display name of other entity
+    ☐ Style tables
+    ☐ Add project page should display techs and their work loads for consideration when assigning projects.
+    ☐ When no tech is assigned to project, should display an alert on AllProjects
+    ✔ Fill in fake data to all tables, maybe 5 rows each @done(23-03-24 12:01)
+    ☐ Client address should be separated into address, city, state, zip
 
-Database:
-    ☐ Fill in fake data to all tables, maybe 5 rows each
-        projects can have same 3-5 samples
-    
-
-Backend:
 
 
 Nice-to-haves:
     ☐ Create complex project number from date (YYYY00001)
     ☐ Make sidebar collapseable with icons to replace page titles 
+    ☐ Implement darkmode for site (settings page?, what else would be on settings page?)
+    ☐ Implement a testing suite after all baseline functionality is in place.  Use this to CI with improvements and new features.
+    ☐ When displaying tables of information, have tables resize appropriately to accomodate larger numbers of rows.
+        ☐ Maybe have the larger table fade-in when scrolling through the first number of rows?
+
+    
