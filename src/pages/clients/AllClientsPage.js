@@ -16,6 +16,10 @@ export default function AllClientsPage() {
         setClients(clients);
     }
 
+    async function onView(id_client) {
+        navigate(`/clients/${id_client}`);
+    }
+
     useEffect(() => {
         loadClients();
     }, []);
@@ -25,11 +29,11 @@ export default function AllClientsPage() {
             <div className="flex justify-between">
                 <h3 className="text-2xl p-4">Clients</h3>
                 <button onClick={() =>{
-                    navigate("/add-client")
+                    navigate("/clients/add")
                 }} className="btn btn-green">Add New Client</button>
             </div>
 
-            <ClientTable clients={clients} />
+            <ClientTable clients={clients} onView={onView}/>
         </>
     );
 }

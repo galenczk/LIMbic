@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function AddProjectPage() {
+export default function AddSamplesToProjectPage() {
     const [clients, setClients] = useState([]);
     const navigate = useNavigate();
 
@@ -14,24 +14,10 @@ export default function AddProjectPage() {
         setClients(clients);
     }
 
-    async function createSamples(values) {
-        const response = await axios.post("http://localhost:3030/samples", values)
-        if (response.status === 201){
-            navigate(`/projects/${values.id_project}`)
-            // Navigate to sample editing page.
-        }
-    }
-
     async function onAdd(values) {
         const response = await axios.post("http://localhost:3030/projects", values);
         if (response.status === 201) {
-            
-            values.id_project = response.data[0].id_project
-            
-            if(values.num_samples > 0){
-                createSamples(values) 
-            } else{  navigate(`/projects/${values.id_project}`) }
-            
+            navigate("/projects");
         }
     }
 
@@ -88,7 +74,7 @@ export default function AddProjectPage() {
                         </Field>
                         <div className="mt-4">
                             <button className="btn btn-green" type="submit">
-                                Add Samples
+                                Add
                             </button>
                         </div>
                     </Form>

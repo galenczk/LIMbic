@@ -7,12 +7,10 @@ export default function ManagerTable({ managers }) {
             <table className="justify-center">
                 <thead>
                     <tr className="">
-                        <th className="">1</th>
-                        <th className="w-1/4">2</th>
-                        <th className="w-1/4">3</th>
-                        <th className="">4</th>
-                        <th className="">5</th>
-                        <th className="">6</th>
+                        <th className="">Name</th>
+                        <th className="w-1/4">Phone</th>
+                        <th className="w-1/4">Email</th>
+                        <th className=""></th>
                     </tr>
                 </thead>
                 <tbody>

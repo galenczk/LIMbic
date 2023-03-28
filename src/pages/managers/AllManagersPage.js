@@ -26,7 +26,7 @@ export default function AllManagersPage() {
                 <h3 className="text-2xl p-4">Managers</h3>
                 <button
                     onClick={() => {
-                        navigate("/add-manager");
+                        navigate("/managers/add");
                     }}
                     className="btn btn-green"
                 >

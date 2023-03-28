@@ -14,7 +14,7 @@ const db = require("./db-connector");
 /**
  * **********************************CLIENT ROUTES*******************************************
  */
-// GET ALL CLIENTS
+// ROUTE -- GET ALL CLIENTS
 app.get("/clients", (req, res) => {
     const query = "SELECT * FROM Clients;";
     db.pool.query(query, (error, result) => {
@@ -26,10 +26,10 @@ app.get("/clients", (req, res) => {
     });
 });
 
-// GET SPECIFIC CLIENT ON id_client
+// ROUTE -- GET SPECIFIC CLIENT ON id_client
 app.get("/clients/:id_client", (req, res) => {
     const id_client = req.params.id_client;
-    const query = `SELECT id_client, client_name, client_address, client_phone, client_email, client_type, client_notes FROM Clients WHERE Clients.id_client = ?`;
+    const query = `SELECT id_client, client_name, client_address, client_phone, client_email, client_type, client_notes FROM Clients WHERE Clients.id_client = ?;`;
     db.pool.query(query, id_client, async (error, result) => {
         if (!error) {
             res.status(201).send(JSON.stringify(result));
@@ -39,7 +39,7 @@ app.get("/clients/:id_client", (req, res) => {
     });
 });
 
-// ADD NEW CLIENT
+// ROUTE -- ADD NEW CLIENT
 app.post("/clients", (req, res) => {
     const client_name = req.body.client_name;
     const client_address = req.body.client_address;
@@ -49,7 +49,7 @@ app.post("/clients", (req, res) => {
     const client_notes = req.body.client_notes;
 
     const query =
-        "INSERT INTO Clients (client_name, client_address, client_phone, client_email, client_type, client_notes) VALUES (?,?,?,?,?,?)";
+        "INSERT INTO Clients (client_name, client_address, client_phone, client_email, client_type, client_notes) VALUES (?,?,?,?,?,?);";
 
     db.pool.query(
         query,
@@ -66,7 +66,7 @@ app.post("/clients", (req, res) => {
 /**
  * **********************************MANAGER ROUTES*******************************************
  */
-// GET ALL MANAGERS
+// ROUTE -- GET ALL MANAGERS
 app.get("/managers", (req, res) => {
     const query = "SELECT * FROM Managers;";
     db.pool.query(query, (error, result) => {
@@ -78,10 +78,10 @@ app.get("/managers", (req, res) => {
     });
 });
 
-// GET SPECIFIC MANAGER ON id_manager
+// ROUTE -- GET SPECIFIC MANAGER ON id_manager
 app.get("/managers/:id_manager", (req, res) => {
     const id_manager = req.params.id_manager;
-    const query = `SELECT id_manager, manager_name, manager_phone, manager_email FROM Managers WHERE Managers.id_manager = ?`;
+    const query = `SELECT id_manager, manager_name, manager_phone, manager_email FROM Managers WHERE Managers.id_manager = ?;`;
     db.pool.query(query, id_manager, async (error, result) => {
         if (!error) {
             res.status(201).send(JSON.stringify(result));
@@ -91,13 +91,13 @@ app.get("/managers/:id_manager", (req, res) => {
     });
 });
 
-// ADD NEW MANAGER
+// ROUTE -- ADD NEW MANAGER
 app.post("/managers", (req, res) => {
     const manager_name = req.body.manager_name;
     const manager_phone = req.body.manager_phone;
     const manager_email = req.body.manager_email;
 
-    const query = "INSERT INTO Managers (manager_name, manager_phone, manager_email) VALUES (?,?,?)";
+    const query = "INSERT INTO Managers (manager_name, manager_phone, manager_email) VALUES (?,?,?);";
 
     db.pool.query(query, [manager_name, manager_phone, manager_email], (error) => {
         if (!error) {
@@ -107,10 +107,28 @@ app.post("/managers", (req, res) => {
         }
     });
 });
+// ROUTE -- UPDATE AN EXISTING MANAGER ON id_manager
+app.post("/techs/update", (req, res) => {
+    const id_manager = req.body.id_manager;
+    const manager_name = req.body.manager_name;
+    const manager_phone = req.body.manager_phone;
+    const manager_email = req.body.manager_email;
+
+    const query =
+        "UPDATE Managers SET manager_name = ?, manager_phone = ?, manager_email = ? WHERE Managers.id_manager = ?;";
+
+    db.pool.query(query, [manager_name, manager_phone, manager_email, id_manager], (error) => {
+        if (!error) {
+            res.status(200).send(`Update of Manager ${manager_name} successful!`);
+        } else {
+            console.log(error);
+        }
+    });
+});
 /**
  * **********************************PROJECT ROUTES*******************************************
  */
-// GET ALL PROJECTS
+// ROUTE -- GET ALL PROJECTS
 app.get("/projects", (req, res) => {
     const query = "SELECT * FROM Projects;";
     db.pool.query(query, (error, result) => {
@@ -122,10 +140,10 @@ app.get("/projects", (req, res) => {
     });
 });
 
-// GET SPECIFIC PROJECT ON id_project
+// ROUTE -- GET SPECIFIC PROJECT ON id_project
 app.get("/projects/:id_project", (req, res) => {
     const id_project = req.params.id_project;
-    const query = `SELECT id_project, id_client, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time FROM Projects WHERE Projects.id_project = ?`;
+    const query = `SELECT id_project, id_client, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time, project_type FROM Projects WHERE Projects.id_project = ?;`;
     db.pool.query(query, id_project, async (error, result) => {
         if (!error) {
             res.status(201).send(JSON.stringify(result));
@@ -135,7 +153,7 @@ app.get("/projects/:id_project", (req, res) => {
     });
 });
 
-// ADD NEW PROJECT
+// ROUTE -- ADD NEW PROJECT
 app.post("/projects", (req, res) => {
     const id_client = req.body.id_client;
     const project_name = req.body.project_name;
@@ -145,24 +163,36 @@ app.post("/projects", (req, res) => {
     const turn_around_time = req.body.turn_around_time;
 
     const query =
-        "INSERT INTO Projects (id_client, project_name, project_type, project_num_client, num_samples, turn_around_time) VALUES (?,?,?,?,?,?)";
+        "INSERT INTO Projects (id_client, project_name, project_type, project_num_client, num_samples, turn_around_time) VALUES (?,?,?,?,?,?) RETURNING id_project;";
 
     db.pool.query(
         query,
         [id_client, project_name, project_type, project_num_client, num_samples, turn_around_time],
-        (error) => {
+        (error, result) => {
             if (!error) {
-                res.status(201).send(`Insert of ${project_name} successful!`);
+                res.status(201).send(JSON.stringify(result));
             } else {
                 console.log(error);
             }
         }
     );
 });
+// ROUTE -- GET PROJECTS FOR CLIENT ON id_client
+app.get("/projects-for-client/:id_client", (req, res) => {
+    const id_client = req.params.id_client;
+    const query = `SELECT id_project, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time, project_type FROM Projects WHERE Projects.id_client = ?;`;
+    db.pool.query(query, id_client, async (error, result) => {
+        if (!error) {
+            res.status(201).send(JSON.stringify(result));
+        } else {
+            console.log(error);
+        }
+    });
+});
 /**
  * **********************************TECH ROUTES*******************************************
  */
-// GET ALL TECHS
+// ROUTE -- GET ALL TECHS
 app.get("/techs", (req, res) => {
     const query = "SELECT * FROM Technicians;";
     db.pool.query(query, (error, result) => {
@@ -174,10 +204,10 @@ app.get("/techs", (req, res) => {
     });
 });
 
-// GET SPECIFIC TECH ON id_tech
+// ROUTE -- GET SPECIFIC TECH ON id_tech
 app.get("/techs/:id_tech", (req, res) => {
     const id_tech = req.params.id_tech;
-    const query = `SELECT id_tech, tech_name, tech_phone, tech_email FROM Technicians WHERE Technicians.id_tech = ?`;
+    const query = `SELECT id_tech, tech_name, tech_phone, tech_email FROM Technicians WHERE Technicians.id_tech = ?;`;
     db.pool.query(query, id_tech, async (error, result) => {
         if (!error) {
             res.status(201).send(JSON.stringify(result));
@@ -187,17 +217,77 @@ app.get("/techs/:id_tech", (req, res) => {
     });
 });
 
-// ADD NEW TECH
+// ROUTE -- ADD NEW TECH
 app.post("/techs", (req, res) => {
     const tech_name = req.body.tech_name;
     const tech_phone = req.body.tech_phone;
     const tech_email = req.body.tech_email;
 
-    const query = "INSERT INTO Technicians (tech_name, tech_phone, tech_email) VALUES (?,?,?)";
+    const query = "INSERT INTO Technicians (tech_name, tech_phone, tech_email) VALUES (?,?,?);";
 
     db.pool.query(query, [tech_name, tech_phone, tech_email], (error) => {
         if (!error) {
             res.status(201).send(`Insert of ${tech_name} successful!`);
+        } else {
+            console.log(error);
+        }
+    });
+});
+//ROUTE -- UPDATE AN EXISTING TECH ON id_tech
+app.post("/techs/update", (req, res) => {
+    const id_tech = req.body.id_tech;
+    const tech_name = req.body.tech_name;
+    const tech_phone = req.body.tech_phone;
+    const tech_email = req.body.tech_email;
+
+    const query = "UPDATE Technicians SET tech_name = ?, tech_phone = ?, tech_email = ? WHERE Technicians.id_tech = ?;";
+
+    db.pool.query(query, [tech_name, tech_phone, tech_email, id_tech], (error) => {
+        if (!error) {
+            res.status(200).send(`Update of Technician ${tech_name} successful!`);
+        } else {
+            console.log(error);
+        }
+    });
+});
+
+/**
+ * **********************************SAMPLE ROUTES*******************************************
+ */
+// ROUTE -- GET SPECIFIC SAMPLE SET FOR PROJECT ON id_project
+app.get("/samples/:id_project", (req, res) => {
+    const id_project = req.params.id_project;
+    const query = `SELECT id_sample, id_project, date_collected, sample_medium, sample_quantity, sample_quantity_unit, sample_result, sample_result_unit, sample_notes FROM Samples WHERE Samples.id_project = ?;`;
+    db.pool.query(query, id_project, async (error, result) => {
+        if (!error) {
+            res.status(201).send(JSON.stringify(result));
+        } else {
+            console.log(error);
+        }
+    });
+});
+
+// ROUTE -- ADD NEW SAMPLE
+app.post("/samples", (req, res) => {
+    const id_project = req.body.id_project;
+    let num_samples = req.body.num_samples;
+
+    let query = `INSERT INTO Samples (id_project) VALUES (${id_project});`;
+
+    if (parseInt(num_samples) > 1) {
+        const queryPrefix = `INSERT INTO Samples (id_project) VALUES (${id_project});`;
+        let add = `(${id_project}), `;
+        for (let i = 0; i < num_samples - 2; i++) {
+            add += `(${id_project}), `;
+        }
+        query = queryPrefix.slice(0, 40) + add + queryPrefix.slice(40);
+    }
+
+    console.log(query);
+
+    db.pool.query(query, (error) => {
+        if (!error) {
+            res.status(201).send(`Insert of sample successful!`);
         } else {
             console.log(error);
         }

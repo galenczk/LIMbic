@@ -1,10 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-
 import axios from "axios"
 
-// Components
 import ProjectTable from "../../components/projects/ProjectTable"
 
 export default function AllProjectsPage() {
@@ -30,7 +28,7 @@ export default function AllProjectsPage() {
         <div className="flex justify-between">
            <h3 className="text-2xl p-4">Projects</h3> 
            <button 
-            onClick={() => {navigate("/add-project")}}
+            onClick={() => {navigate("/projects/add")}}
            className="btn btn-green">Open New Project</button>
         </div>
         

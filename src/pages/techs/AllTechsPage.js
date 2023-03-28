@@ -9,7 +9,7 @@ import TechTable from "../../components/techs/TechTable";
 export default function AllTechsPage() {
     const [techs, setTechs] = useState([]);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     async function loadTechs() {
         const response = await axios.get("http://localhost:3030/techs");
@@ -22,15 +22,22 @@ export default function AllTechsPage() {
     }, []);
 
     return (
-        <>
+        <div className="flex flex-col h-full">
             <div className="flex justify-between">
-                <h3 className="text-2xl p-4">Techs</h3>
-                <button onClick={() => {
-                    navigate("/add-tech")
-                }} className="btn btn-green">Add New</button>
+                <h3 className="text-2xl p-4">Technicians</h3>
             </div>
 
             <TechTable techs={techs} />
-        </>
+            <div className="mt-auto m-4">
+                <button
+                    onClick={() => {
+                        navigate("/techs/add");
+                    }}
+                    className="btn btn-green"
+                >
+                    Add New Tech
+                </button>
+            </div>
+        </div>
     );
 }

@@ -7,12 +7,10 @@ export default function TechTable({ techs }) {
             <table className="justify-center">
                 <thead>
                     <tr className="">
-                        <th className="">1</th>
-                        <th className="w-1/4">2</th>
-                        <th className="w-1/4">3</th>
-                        <th className="">4</th>
-                        <th className="">5</th>
-                        <th className="">6</th>
+                        <th className="">Name</th>
+                        <th className="">Phone</th>
+                        <th className="">Email</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,14 +1,27 @@
 ☐ Prioritize baseline functionality being in place before the start of school again.
 
-    ☐ Create details pages for entities that need them
-    ☐ Create add/edit pages for Projects
+Tomorrow's work:
+    ✔ Be able to add samples to project @done(23-03-28 12:07)
+    ☐ Create sample editing / result input page
+
+         
+
+Rest:
+    ☐ Be able to add results to samples
     ☐ Make foriegn keys in Projects display name of other entity
     ☐ Style tables
     ☐ Add project page should display techs and their work loads for consideration when assigning projects.
     ☐ When no tech is assigned to project, should display an alert on AllProjects
     ✔ Fill in fake data to all tables, maybe 5 rows each @done(23-03-24 12:01)
     ☐ Client address should be separated into address, city, state, zip
-
+    ☐ ProjectDetailsPage, "samples" shoudl be "sample" when only one sample.
+    ☐ Make small btn css classes
+    ☐ Make "completed" table for projects.
+    ☐ Make "deleted" versions of every table and have delete action move items to these tables with a stored "deleted on" timestamp.
+        Include the ability to move items from "deleted" back to original table.
+    ☐ When a sample is ND, result unit should not be displayed
+        ☐ When a sample has not been analyzed yet, (NULL in db) flag should be displayed in SampleTable
+    ☐ onView and other such functions should not be passed to components if they only navigate.  Just define them at the component level.
 
 
 Nice-to-haves:
@@ -18,5 +31,8 @@ Nice-to-haves:
     ☐ Implement a testing suite after all baseline functionality is in place.  Use this to CI with improvements and new features.
     ☐ When displaying tables of information, have tables resize appropriately to accomodate larger numbers of rows.
         ☐ Maybe have the larger table fade-in when scrolling through the first number of rows?
+    ☐ Use larger tailwind classes for common styling patterns
 
-    
+
+Bugs:
+    ☐ Clients are able to add with blank form, other entities too?

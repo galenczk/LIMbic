@@ -25,15 +25,6 @@ export default function SideBar({ children }) {
                             Projects
                         </NavLink>
                         <NavLink
-                            to="/techs"
-                            end
-                            className={({ isActive }) =>
-                                isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4"
-                            }
-                        >
-                            Technicians
-                        </NavLink>
-                        <NavLink
                             to="/clients"
                             end
                             className={({ isActive }) =>
@@ -42,6 +33,16 @@ export default function SideBar({ children }) {
                         >
                             Clients
                         </NavLink>
+                        <NavLink
+                            to="/techs"
+                            end
+                            className={({ isActive }) =>
+                                isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4"
+                            }
+                        >
+                            Technicians
+                        </NavLink>
+
                         <NavLink
                             to="/managers"
                             end
