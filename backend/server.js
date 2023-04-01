@@ -233,6 +233,7 @@ app.post("/techs", (req, res) => {
         }
     });
 });
+
 //ROUTE -- UPDATE AN EXISTING TECH ON id_tech
 app.post("/techs/update", (req, res) => {
     const id_tech = req.body.id_tech;
@@ -287,7 +288,26 @@ app.post("/samples", (req, res) => {
 
     db.pool.query(query, (error) => {
         if (!error) {
-            res.status(201).send(`Insert of sample successful!`);
+            res.status(201).send(`Insert of samples successful!`);
+        } else {
+            console.log(error);
+        }
+    });
+});
+
+//ROUTE -- UPDATE EXISTING SAMPLES ON id_project
+// This Route needs work!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+app.post("/samples/update", (req, res) => {
+    const id_tech = req.body.id_tech;
+    const tech_name = req.body.tech_name;
+    const tech_phone = req.body.tech_phone;
+    const tech_email = req.body.tech_email;
+
+    const query = "INSERT INTO Samples (id_sample, id_project, sample_label) VALUES (13, 25, 'TestingChange') ON DUPLICATE KEY UPDATE sample_label=VALUES(sample_label);"
+
+    db.pool.query(query, [tech_name, tech_phone, tech_email, id_tech], (error) => {
+        if (!error) {
+            res.status(200).send(`Update of Samples for ${id_project} successful!`);
         } else {
             console.log(error);
         }

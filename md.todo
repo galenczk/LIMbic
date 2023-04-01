@@ -1,8 +1,8 @@
 ☐ Prioritize baseline functionality being in place before the start of school again.
 
 Tomorrow's work:
-    ✔ Be able to add samples to project @done(23-03-28 12:07)
-    ☐ Create sample editing / result input page
+    ☐ Sample editing page needs to submit values via Form.  Form must handle multiple values for the same label
+        backend route must deconstruct these values and pass to DB.
 
          
 
