@@ -298,16 +298,81 @@ app.post("/samples", (req, res) => {
 //ROUTE -- UPDATE EXISTING SAMPLES ON id_project
 // This Route needs work!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 app.post("/samples/update", (req, res) => {
-    const id_tech = req.body.id_tech;
-    const tech_name = req.body.tech_name;
-    const tech_phone = req.body.tech_phone;
-    const tech_email = req.body.tech_email;
+    //const id_tech = req.body.id_tech;
 
-    const query = "INSERT INTO Samples (id_sample, id_project, sample_label) VALUES (13, 25, 'TestingChange') ON DUPLICATE KEY UPDATE sample_label=VALUES(sample_label);"
+    const data = req.body;
+    console.log(data);
 
-    db.pool.query(query, [tech_name, tech_phone, tech_email, id_tech], (error) => {
+    let subQuery = "";
+
+    for (let i = 0; i < data.id_sample.length; i++) {
+        let curr = "(";
+        curr += data.id_sample[i];
+        curr += ", ";
+        if (data.date_collected[i] !== null) {
+            curr += "'";
+            curr += data.date_collected[i];
+            curr += "'";
+            curr += ", ";
+        } else {
+            curr += data.date_collected[i];
+            curr += ", ";
+        }
+        if (data.sample_label[i] !== null) {
+            curr += "'";
+            curr += data.sample_label[i];
+            curr += "'";
+            curr += ", ";
+        } else {
+            curr += data.sample_label[i];
+            curr += ", ";
+        }
+        if (data.sample_medium[i] !== null) {
+            curr += "'";
+            curr += data.sample_medium[i];
+            curr += "'";
+            curr += ", ";
+        } else {
+            curr += data.sample_medium[i];
+            curr += ", ";
+        }
+        if (data.sample_quantity[i] !== null) {
+            curr += "'";
+            curr += data.sample_quantity[i];
+            curr += "'";
+            curr += ", ";
+        } else {
+            curr += data.sample_quantity[i];
+            curr += ", ";
+        }
+        if (data.sample_quantity_unit[i] !== null) {
+            curr += "'";
+            curr += data.sample_quantity_unit[i];
+            curr += "'";
+            curr += ", ";
+        } else {
+            curr += data.sample_quantity_unit[i];
+            curr += ", ";
+        }
+        if (data.sample_notes[i] !== null) {
+            curr += "'";
+            curr += data.sample_notes[i];
+            curr += "'";
+        } else {
+            curr += data.sample_notes[i];
+        }
+        curr += "), ";
+        subQuery += curr;
+    }
+    subQuery = subQuery.substring(0, subQuery.length - 2);
+    console.log(subQuery);
+
+    const query = `INSERT INTO Samples (id_sample, date_collected, sample_label, sample_medium, sample_quantity, sample_quantity_unit, sample_notes) 
+        VALUES ${subQuery} ON DUPLICATE KEY UPDATE date_collected=VALUES(date_collected), sample_label=VALUES(sample_label), sample_medium=VALUES(sample_medium),
+        sample_quantity=VALUES(sample_quantity), sample_quantity_unit=VALUES(sample_quantity_unit), sample_notes=VALUES(sample_notes);`;
+    db.pool.query(query, (error) => {
         if (!error) {
-            res.status(200).send(`Update of Samples for ${id_project} successful!`);
+            res.status(200).send(`Update of Samples for ${data.id_project} successful!`);
         } else {
             console.log(error);
         }

@@ -8,13 +8,6 @@ import EditSampleLine from "./EditSampleLine";
 export default function EditSampleTable({ samples, initialSamples }) {
     const navigate = useNavigate();
 
-    async function onUpdate(values) {
-        console.log(values)
-        //const response = await axios.post("http://localhost:3030/samples/update", values);
-        //if (response.status === 201) {
-        //    navigate("/clients");
-        //}
-    }
 
     return (
         <>

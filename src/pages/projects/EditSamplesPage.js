@@ -31,8 +31,10 @@ export default function EditSamplesPage() {
 
     const navigate = useNavigate();
 
+    // This needs to contain nulls for everything to start.
     const initialSamples = {
-        id_samples: [],
+        id_project: id_project,
+        id_sample: [],
         date_collected: [],
         sample_label: [],
         sample_medium: [],
@@ -41,8 +43,9 @@ export default function EditSamplesPage() {
         sample_notes: [],
     };
 
+    // This needs to be changed to set values at specific indexes in the arrays above
     samples.map((sample, index) => {
-        initialSamples.id_samples.push(sample.id_sample);
+        initialSamples.id_sample.push(sample.id_sample);
         initialSamples.date_collected.push(sample.date_collected);
         initialSamples.sample_label.push(sample.sample_label);
         initialSamples.sample_medium.push(sample.sample_medium);
@@ -52,8 +55,7 @@ export default function EditSamplesPage() {
     });
 
     async function onUpdate(values) {
-        console.log(values);
-        //const response = await axios.post("http://localhost:3030/samples/update", values);
+        const response = await axios.post("http://localhost:3030/samples/update", values);
         //if (response.status === 201) {
         //    navigate("/clients");
         //}
