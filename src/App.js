@@ -16,6 +16,7 @@ import AllProjectsPage from "./pages/projects/AllProjectsPage";
 import AddProjectPage from "./pages/projects/AddProjectPage";
 import ProjectDetailsPage from "./pages/projects/ProjectDetailsPage";
 import EditSamplesPage from "./pages/projects/EditSamplesPage";
+import SampleResultsPage from "./pages/projects/SampleResultsPage";
 
 import AllTechsPage from "./pages/techs/AllTechsPage";
 import AddTechPage from "./pages/techs/AddTechPage";
@@ -23,6 +24,7 @@ import EditTechPage from "./pages/techs/EditTechPage";
 
 // Components
 import SideBar from "./components/SideBar";
+
 
 export default function App() {
     return (
@@ -44,6 +46,8 @@ export default function App() {
                         <Route path="/projects/add" exact element={<AddProjectPage />} />
                         <Route path="/projects/:id_project" exact element={<ProjectDetailsPage />} />
                         <Route path="/projects/edit-samples/:id_project" exact element={<EditSamplesPage />} />
+                        <Route path="/projects/edit-results/:id_project" exact element={<SampleResultsPage />} />
+
 
                         <Route path="/techs" exact element={<AllTechsPage />} />
                         <Route path="/techs/add" exact element={<AddTechPage />} />

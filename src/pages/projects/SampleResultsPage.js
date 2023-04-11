@@ -6,7 +6,7 @@ import { Formik, Form, FieldArray, Field } from "formik";
 
 import EditSampleTable from "../../components/samples/EditSamples/EditSampleTable";
 
-export default function EditSamplesPage() {
+export default function SampleResultsPage() {
     const { id_project } = useParams();
 
     const [project, setProject] = useState([]);
@@ -35,27 +35,21 @@ export default function EditSamplesPage() {
     const initialSamples = {
         id_project: id_project,
         id_sample: [],
-        date_collected: [],
-        sample_label: [],
-        sample_medium: [],
-        sample_quantity: [],
-        sample_quantity_unit: [],
+        sample_result: [],
+        sample_result_unit: [],
         sample_notes: []
     };
 
     // This needs to be changed to set values at specific indexes in the arrays above
     samples.map((sample, index) => {
         initialSamples.id_sample.push(sample.id_sample);
-        initialSamples.date_collected.push(sample.date_collected);
-        initialSamples.sample_label.push(sample.sample_label);
-        initialSamples.sample_medium.push(sample.sample_medium);
-        initialSamples.sample_quantity.push(sample.sample_quantity);
-        initialSamples.sample_quantity_unit.push(sample.sample_quantity_unit);
+        initialSamples.sample_result.push(sample.sample_result);
+        initialSamples.sample_result_unit.push(sample.sample_result_unit);
         initialSamples.sample_notes.push(sample.sample_notes);
     });
 
     async function onUpdate(values) {
-        const response = await axios.post("http://localhost:3030/samples/update", values);
+        const response = await axios.post("http://localhost:3030/samples/results/update", values);
         //if (response.status === 201) {
         //    navigate("/clients");
         //}
@@ -73,11 +67,11 @@ export default function EditSamplesPage() {
                 <Formik
                     initialValues={initialSamples}
                     onSubmit={async (values) => {
-                        onUpdate(values)
+                        onUpdate(values);
                     }}
                     enableReinitialize={true}
                 >
-                    <EditSampleTable samples={samples} initialSamples={initialSamples}/>
+                    <EditSampleTable samples={samples} initialSamples={initialSamples} />
                 </Formik>
             </div>
         </div>

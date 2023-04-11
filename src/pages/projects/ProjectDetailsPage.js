@@ -51,7 +51,8 @@ export default function ProjectDetailsPage() {
                 <div className="flex m-2">
                     <h2>Samples</h2>
                     <div className="mx-auto"/>
-                    <button className="btn btn-blue" onClick={() => navigate(`/projects/edit-samples/${project.id_project}`)}>Input Analytical Results</button>
+                    <button className="btn btn-blue" onClick={() => navigate(`/projects/edit-samples/${project.id_project}`)}>Edit Sample Details</button>
+                    <button className="btn btn-blue" onClick={() => navigate(`/samples/results/${project.id_project}`)}>Add Sample Results</button>
                 </div>
                 
                 <SampleTable samples={samples} />

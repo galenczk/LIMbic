@@ -1,20 +1,21 @@
 ☐ Prioritize baseline functionality being in place before the start of school again.
 
 Tomorrow's work:
-    ☐ Sample editing page needs to be able to change sample values.
-    I think I can define initialValues to be an object of lists.  These lists can then be indexed by formik elements on the page.
-
-
-         
+    ☐ Think through manager's workflow of opening project
+    ☐ Think through tech's workflow of adding results to samples
 
 Rest:
-    ☐ Be able to add results to samples
+    ✔ Be able to add results to samples @done(23-04-11 11:36)
+    ☐ Validate entries to forms.
+    ☐ Make quantity units set automatically based on project type?
+    ☐ Create button to set all sample data form values (date_collected, medium, quantity) the same as first row.
     ☐ Make foriegn keys in Projects display name of other entity
     ☐ Style tables
+    ☐ Check that all tables presenting data have correct headers.
     ☐ Add project page should display techs and their work loads for consideration when assigning projects.
     ☐ When no tech is assigned to project, should display an alert on AllProjects
     ☐ Client address should be separated into address, city, state, zip
-    ☐ ProjectDetailsPage, "samples" shoudl be "sample" when only one sample.
+    ☐ ProjectDetailsPage, "samples" should be "sample" when only one sample.
     ☐ Make small btn css classes
     ☐ Make "completed" table for projects.
     ☐ Make "deleted" versions of every table and have delete action move items to these tables with a stored "deleted on" timestamp.
@@ -22,11 +23,13 @@ Rest:
     ☐ When a sample is ND, result unit should not be displayed
         ☐ When a sample has not been analyzed yet, (NULL in db) flag should be displayed in SampleTable
     ☐ onView and other such functions should not be passed to components if they only navigate.  Just define them at the component level.
+    ☐ Add tech assigned label to ProjectDetails page.
 
 
 Nice-to-haves:
     ☐ Create complex project number from date (YYYY00001)
     ☐ Make sidebar collapseable with icons to replace page titles 
+        sidebar or top nav bar?
     ☐ Implement darkmode for site (settings page?, what else would be on settings page?)
     ☐ Implement a testing suite after all baseline functionality is in place.  Use this to CI with improvements and new features.
     ☐ When displaying tables of information, have tables resize appropriately to accomodate larger numbers of rows.

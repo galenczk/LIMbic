@@ -17,7 +17,7 @@ export default function AddProjectPage() {
     async function createSamples(values) {
         const response = await axios.post("http://localhost:3030/samples", values)
         if (response.status === 201){
-            navigate(`/projects/${values.id_project}`)
+            navigate(`/projects/edit-samples/${values.id_project}`);
             // Navigate to sample editing page.
         }
     }
