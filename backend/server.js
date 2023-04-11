@@ -258,7 +258,7 @@ app.post("/techs/update", (req, res) => {
 // ROUTE -- GET SPECIFIC SAMPLE SET FOR PROJECT ON id_project
 app.get("/samples/:id_project", (req, res) => {
     const id_project = req.params.id_project;
-    const query = `SELECT id_sample, id_project, date_collected, sample_medium, sample_quantity, sample_quantity_unit, sample_result, sample_result_unit, sample_notes FROM Samples WHERE Samples.id_project = ?;`;
+    const query = `SELECT id_sample, id_project, date_collected, sample_label, sample_medium, sample_quantity, sample_quantity_unit, sample_result, sample_result_unit, sample_notes FROM Samples WHERE Samples.id_project = ?;`;
     db.pool.query(query, id_project, async (error, result) => {
         if (!error) {
             res.status(201).send(JSON.stringify(result));

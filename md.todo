@@ -1,8 +1,9 @@
 ☐ Prioritize baseline functionality being in place before the start of school again.
 
 Tomorrow's work:
-    ☐ Sample editing page needs to submit values via Form.  Form must handle multiple values for the same label
-        backend route must deconstruct these values and pass to DB.
+    ☐ Sample editing page needs to be able to change sample values.
+    I think I can define initialValues to be an object of lists.  These lists can then be indexed by formik elements on the page.
+
 
          
 
@@ -12,7 +13,6 @@ Rest:
     ☐ Style tables
     ☐ Add project page should display techs and their work loads for consideration when assigning projects.
     ☐ When no tech is assigned to project, should display an alert on AllProjects
-    ✔ Fill in fake data to all tables, maybe 5 rows each @done(23-03-24 12:01)
     ☐ Client address should be separated into address, city, state, zip
     ☐ ProjectDetailsPage, "samples" shoudl be "sample" when only one sample.
     ☐ Make small btn css classes
