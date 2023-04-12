@@ -59,7 +59,7 @@ export default function AddProjectPage() {
                 >
                     <Form className="flex flex-col">
                         <label for="id_client">Client</label>
-                        <Field type="text" id="id_client" name="id_client"></Field>
+                        <Field type="text" id="id_client" name="id_client" ></Field>
                         <label for="project_name">Project Name</label>
                         <Field type="text" id="project_name" name="project_name"></Field>
                         <label for="project_type">Project Type</label>

@@ -16,7 +16,6 @@ export default function EditTechPage() {
     async function loadTech(id_tech) {
         const response = await axios.get(`http://localhost:3030/techs/${id_tech}`);
         const tech = response.data[0];
-        console.log(tech)
         setTech(tech);
     }
 

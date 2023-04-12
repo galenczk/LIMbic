@@ -63,6 +63,27 @@ app.post("/clients", (req, res) => {
         }
     );
 });
+
+//ROUTE -- UPDATE AN EXISTING CLIENT ON id_client
+app.post("/clients/update", (req, res) => {
+    const id_client = req.body.id_client;
+    const client_name = req.body.client_name;
+    const client_address = req.body.client_address;
+    const client_phone = req.body.client_phone;
+    const client_email = req.body.client_email;
+    const client_type = req.body.client_type;
+    
+    const query = "UPDATE Clients SET client_name = ?, client_address = ?, client_phone = ?, client_email = ?, client_type = ? WHERE Clients.id_client = ?;";
+
+    db.pool.query(query, [client_name, client_address, client_phone, client_email, client_type, id_client], (error) => {
+        console.log(req)
+        if (!error) {
+            res.status(200).send(`Update of Client ${id_client} successful!`);
+        } else {
+            console.log(error);
+        }
+    });
+});
 /**
  * **********************************MANAGER ROUTES*******************************************
  */
@@ -108,7 +129,7 @@ app.post("/managers", (req, res) => {
     });
 });
 // ROUTE -- UPDATE AN EXISTING MANAGER ON id_manager
-app.post("/techs/update", (req, res) => {
+app.post("/managers/update", (req, res) => {
     const id_manager = req.body.id_manager;
     const manager_name = req.body.manager_name;
     const manager_phone = req.body.manager_phone;
@@ -190,6 +211,45 @@ app.get("/projects-for-client/:id_client", (req, res) => {
         }
     });
 });
+
+//ROUTE -- UPDATE AN EXISTING PROJECT ON id_project
+app.post("/projects/update", (req, res) => {
+    const id_project = req.body.id_project;
+    const id_client = req.body.id_client;
+    const project_num_client = req.body.project_num_client;
+    const project_name = req.body.project_name;
+    const num_samples = req.body.num_samples;
+    const turn_around_time = req.body.turn_around_time;
+    const project_type = req.body.project_type;
+    
+    const query = "UPDATE Projects SET id_client = ?, project_num_client = ?, project_name = ?, num_samples = ?, turn_around_time = ?, project_type = ? WHERE Projects.id_project = ?;";
+
+    db.pool.query(query, [id_client, project_num_client, project_name, num_samples, turn_around_time, project_type, id_project], (error) => {
+        if (!error) {
+            res.status(200).send(`Update of Project ${id_project} successful!`);
+        } else {
+            console.log(error);
+        }
+    });
+});
+
+//ROUTE -- DELETE SPECIFIC PROJECT ON id_project
+app.post(`/projects/delete`, (req, res) => {
+  const id_project = req.body.id_project;
+  const query = "DELETE FROM Projects WHERE Projects.id_project = ?;";
+
+  // query = "INSERT INTO DeletedProjects VALUES (1, 2, 3, 4, 5) SELECT 1, 2, 3, 4, NULL FROM Projects WHERE Projects.id_projects = ? 
+  // query = "DELETE FROM Projects WHERE Projects.id_project = ?"
+
+  db.pool.query(query, id_project, (error) => {
+    if (!error) {
+      res.status(200).send(`Delete of Project ${id_project} successful.`);
+    } else {
+      console.log(error);
+    }
+  });
+});
+
 /**
  * **********************************TECH ROUTES*******************************************
  */
@@ -285,8 +345,6 @@ app.post("/samples", (req, res) => {
         query = queryPrefix.slice(0, 40) + add + queryPrefix.slice(40);
     }
 
-    console.log(query);
-
     db.pool.query(query, (error) => {
         if (!error) {
             res.status(201).send(`Insert of samples successful!`);
@@ -366,7 +424,6 @@ app.post("/samples/update", (req, res) => {
         subQuery += curr;
     }
     subQuery = subQuery.substring(0, subQuery.length - 2);
-    console.log(subQuery);
 
     const query = `INSERT INTO Samples (id_sample, date_collected, sample_label, sample_medium, sample_quantity, sample_quantity_unit, sample_notes) 
         VALUES ${subQuery} ON DUPLICATE KEY UPDATE date_collected=VALUES(date_collected), sample_label=VALUES(sample_label), sample_medium=VALUES(sample_medium),

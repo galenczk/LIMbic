@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Formik, Form, FieldArray, Field } from "formik";
 
-import EditSampleTable from "../../components/samples/EditSamples/EditSampleTable";
+import EditSampleTable from "../../components/samples/editSamples/EditSampleTable";
 
 export default function EditSamplesPage() {
     const { id_project } = useParams();
@@ -40,7 +40,7 @@ export default function EditSamplesPage() {
         sample_medium: [],
         sample_quantity: [],
         sample_quantity_unit: [],
-        sample_notes: []
+        sample_notes: [],
     };
 
     // This needs to be changed to set values at specific indexes in the arrays above
@@ -56,9 +56,9 @@ export default function EditSamplesPage() {
 
     async function onUpdate(values) {
         const response = await axios.post("http://localhost:3030/samples/update", values);
-        //if (response.status === 201) {
-        //    navigate("/clients");
-        //}
+        if (response.status === 200) {
+            navigate(`/projects/${initialSamples.id_project}`);
+        }
     }
 
     return (
@@ -73,11 +73,11 @@ export default function EditSamplesPage() {
                 <Formik
                     initialValues={initialSamples}
                     onSubmit={async (values) => {
-                        onUpdate(values)
+                        onUpdate(values);
                     }}
                     enableReinitialize={true}
                 >
-                    <EditSampleTable samples={samples} initialSamples={initialSamples}/>
+                    <EditSampleTable samples={samples} initialSamples={initialSamples} />
                 </Formik>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Formik, Form, FieldArray, Field } from "formik";
 
-import EditSampleTable from "../../components/samples/EditSamples/EditSampleTable";
+import EditSampleTable from "../../components/samples/editResults/EditResultTable";
 
 export default function SampleResultsPage() {
     const { id_project } = useParams();
@@ -37,7 +37,7 @@ export default function SampleResultsPage() {
         id_sample: [],
         sample_result: [],
         sample_result_unit: [],
-        sample_notes: []
+        sample_notes: [],
     };
 
     // This needs to be changed to set values at specific indexes in the arrays above

@@ -1,33 +1,48 @@
-☐ Prioritize baseline functionality being in place before the start of school again.
 
 Tomorrow's work:
-    ☐ Think through manager's workflow of opening project
-    ☐ Think through tech's workflow of adding results to samples
 
+    ☐ Edit and Delete functionality for all entities
+        Client needs delete and edit
+        Tech needs delete
+        Manager needs delete
+    ☐ Complete function for projects.
+
+    ☐ Delete the Manager entity completely?
+
+ 
 Rest:
-    ✔ Be able to add results to samples @done(23-04-11 11:36)
-    ☐ Validate entries to forms.
+    ☐ Implement a confirmation on delete functions
+    ☐ Implement a client_notes editing function.
+    ☐ Implement a technician project assigning function.
+    ☐ Style tables 
+    ☐ Use a primary, secondary, tert scheme for buttons
+    ☐ Decide on color palette (range of greys and then some accents)
+    ☐ Decide on font
+    ☐ Different lists on ClientDetails page, open projects and completed proejcts.
+    ☐ Be able to view completed and deleted proejcts
+    ☐ Validate entries to forms.  
+    ☐ Add in DB restrictions again (non-null and FKs).
     ☐ Make quantity units set automatically based on project type?
     ☐ Create button to set all sample data form values (date_collected, medium, quantity) the same as first row.
     ☐ Make foriegn keys in Projects display name of other entity
-    ☐ Style tables
     ☐ Check that all tables presenting data have correct headers.
     ☐ Add project page should display techs and their work loads for consideration when assigning projects.
     ☐ When no tech is assigned to project, should display an alert on AllProjects
     ☐ Client address should be separated into address, city, state, zip
     ☐ ProjectDetailsPage, "samples" should be "sample" when only one sample.
     ☐ Make small btn css classes
-    ☐ Make "completed" table for projects.
-    ☐ Make "deleted" versions of every table and have delete action move items to these tables with a stored "deleted on" timestamp.
-        Include the ability to move items from "deleted" back to original table.
+    ✔ Make "completed" table for projects. @done(23-04-11 13:31)
+    ✔ Make "deleted" versions of every table and have delete action move items to these tables with a stored "deleted on" timestamp. @done(23-04-11 13:31)
     ☐ When a sample is ND, result unit should not be displayed
         ☐ When a sample has not been analyzed yet, (NULL in db) flag should be displayed in SampleTable
     ☐ onView and other such functions should not be passed to components if they only navigate.  Just define them at the component level.
     ☐ Add tech assigned label to ProjectDetails page.
+    ☐ Create log-out button with confirmation
 
 
 Nice-to-haves:
     ☐ Create complex project number from date (YYYY00001)
+    ☐ Auth
     ☐ Make sidebar collapseable with icons to replace page titles 
         sidebar or top nav bar?
     ☐ Implement darkmode for site (settings page?, what else would be on settings page?)

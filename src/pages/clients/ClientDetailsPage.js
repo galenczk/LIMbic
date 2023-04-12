@@ -21,7 +21,6 @@ export default function ClientDetailsPage() {
     async function loadProjects(id_client) {
         const response = await axios.get(`http://localhost:3030/projects-for-client/${id_client}`);
         const projects = response.data;
-        console.log(projects)
         setProjects(projects);
     }
 
@@ -31,6 +30,8 @@ export default function ClientDetailsPage() {
     }, []);
 
     const navigate = useNavigate();
+
+    console.log(client)
 
     return (
         <div className="flex flex-col m-4 h-full">
@@ -52,6 +53,12 @@ export default function ClientDetailsPage() {
                 <h2>Completed Projects</h2>
                 <ProjectTableClientPage projects={projects} />
             </div>
+
+            <div>
+                <button className="btn" onClick={() => {
+                    navigate(`/clients/edit/${id_client}`)
+                }}>Edit Client Details</button>
+            </div> 
         </div>
     );
 }

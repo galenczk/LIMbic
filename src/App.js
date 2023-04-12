@@ -6,6 +6,7 @@ import LandingPage from "./pages/LandingPage";
 
 import AllClientsPage from "./pages/clients/AllClientsPage";
 import AddClientPage from "./pages/clients/AddClientPage";
+import EditClientPage from "./pages/clients/EditClientPage";
 import ClientDetailsPage from "./pages/clients/ClientDetailsPage";
 
 import AllManagersPage from "./pages/managers/AllManagersPage";
@@ -14,6 +15,7 @@ import EditManagerPage from "./pages/managers/EditManagerPage"
 
 import AllProjectsPage from "./pages/projects/AllProjectsPage";
 import AddProjectPage from "./pages/projects/AddProjectPage";
+import EditProjectPage from "./pages/projects/EditProjectPage";
 import ProjectDetailsPage from "./pages/projects/ProjectDetailsPage";
 import EditSamplesPage from "./pages/projects/EditSamplesPage";
 import SampleResultsPage from "./pages/projects/SampleResultsPage";
@@ -36,6 +38,7 @@ export default function App() {
 
                         <Route path="/clients" exact element={<AllClientsPage />} />
                         <Route path="/clients/add" exact element={<AddClientPage />} />
+                        <Route path="/clients/edit/:id_client" exact element={<EditClientPage />} />
                         <Route path="/clients/:id_client" exact element={<ClientDetailsPage />} />
 
                         <Route path="/managers" exact element={<AllManagersPage />} />
@@ -44,6 +47,7 @@ export default function App() {
 
                         <Route path="/projects" exact element={<AllProjectsPage />} />
                         <Route path="/projects/add" exact element={<AddProjectPage />} />
+                        <Route path="/projects/edit/:id_project" exact element={<EditProjectPage />} />
                         <Route path="/projects/:id_project" exact element={<ProjectDetailsPage />} />
                         <Route path="/projects/edit-samples/:id_project" exact element={<EditSamplesPage />} />
                         <Route path="/projects/edit-results/:id_project" exact element={<SampleResultsPage />} />

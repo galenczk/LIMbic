@@ -2,18 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
+/* .btn {
     @apply font-bold py-2 px-4 rounded;
   }
 .btn-blue {
     @apply bg-blue-500 text-white;
   }
 .btn-green {
-    @apply bg-emerald-700 text-white;
+    @apply bg-green-700 text-white;
   }
 .btn-blue:hover {
-    @apply bg-sky-700;
+    @apply bg-sky-900;
   }
 .btn-green:hover {
     @apply bg-emerald-900;
+  } */
+
+  /* .btn{
+    @apply bg-gray-300 hover:bg-gray-400 font-bold py-2 px-4 rounded;
+  } */
+
+  .btn{
+    @apply inline-block rounded bg-fire px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white 
+  }
+
+  .btn-blue{
+    @apply btn 
+  }
+
+  /* Style a table */
+  table {
+    @apply w-full;
+  }
+  th {
+    @apply bg-gray-200;
+  }
+  th, td {
+    @apply border border-gray-400;
+  }
+  th, td {
+    @apply p-2;
+  }
+  th, td {
+    @apply text-left;
+  }
+
+  /* Style a form */
+  input, select {
+    @apply appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none ;
   }
