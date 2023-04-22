@@ -86,6 +86,32 @@ app.post("/clients/update", (req, res) => {
   });
 });
 
+//ROUTE -- DELETE SPECIFIC CLIENT ON id_client
+app.post(`/clients/delete`, (req, res) => {
+  const { id_client } = req.body;
+
+  const query = `
+                START TRANSACTION;
+
+                INSERT INTO DeletedClients (client_name, client_address, client_phone, client_email, client_type, id_client)
+                SELECT client_name, client_address, client_phone, client_email, client_type, id_client
+                FROM Clients
+                WHERE id_client = ?;
+
+                DELETE FROM Clients
+                WHERE id_client = ?;
+                COMMIT;
+                `;
+
+  db.pool.query(query, [id_client, id_client], (error) => {
+    if (!error) {
+      res.status(200).send(`Delete of Client ${id_client} successful.`);
+    } else {
+      console.log(error);
+    }
+  });
+});
+
 /**
  * **********************************PROJECT ROUTES*******************************************
  */
