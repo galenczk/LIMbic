@@ -31,12 +31,6 @@ export default function SideBar({ children }) {
             >
               Technicians
             </NavLink>
-            <NavLink
-              to="/managers"
-              className={({ isActive }) => (isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4")}
-            >
-              Managers
-            </NavLink>
           </nav>
           <main className=" h-screen w-full flex flex-col flex-grow">{children}</main>
         </div>

@@ -1,28 +1,33 @@
 
 Tomorrow's work:
 
-    ☐ Edit and Delete functionality for all entities
-        Client needs delete and edit
-        Tech needs delete
-        Manager needs delete
-    ☐ Complete function for projects.
+    ☐ Delete functionality for all entities
+Projects can edit and delete
+
+
+
+    ☐ Add back buttons to Details Pages
+    ☐ Un-delete functionality for all entities
+    ☐ Edit functionality for all entities
+    ☐ Option to "complete" projects.
+    ☐ Reopen projects that have been completed.
 
     ☐ Delete the Manager entity completely?
 
  
 Rest:
     ☐ Implement a confirmation on delete functions
+    ☐ When no projects, display a message "there are no open projects..."
     ☐ Implement a client_notes editing function.
     ☐ Implement a technician project assigning function.
     ☐ Style tables 
-    ☐ Use a primary, secondary, tert scheme for buttons
-    ☐ Decide on color palette (range of greys and then some accents)
-    ☐ Decide on font
-    ☐ Different lists on ClientDetails page, open projects and completed proejcts.
-    ☐ Be able to view completed and deleted proejcts
+        ☐ Use a primary, secondary, tert scheme for buttons
+        ☐ Decide on color palette (range of greys and then some accents)
+        ☐ Make small btn css classes
+    ☐ The projects list on ClientDetails need to be different.
     ☐ Validate entries to forms.  
     ☐ Add in DB restrictions again (non-null and FKs).
-    ☐ Make quantity units set automatically based on project type?
+    ☐ Make quantity units set automatically based on project type
     ☐ Create button to set all sample data form values (date_collected, medium, quantity) the same as first row.
     ☐ Make foriegn keys in Projects display name of other entity
     ☐ Check that all tables presenting data have correct headers.
@@ -30,19 +35,19 @@ Rest:
     ☐ When no tech is assigned to project, should display an alert on AllProjects
     ☐ Client address should be separated into address, city, state, zip
     ☐ ProjectDetailsPage, "samples" should be "sample" when only one sample.
-    ☐ Make small btn css classes
     ✔ Make "completed" table for projects. @done(23-04-11 13:31)
     ✔ Make "deleted" versions of every table and have delete action move items to these tables with a stored "deleted on" timestamp. @done(23-04-11 13:31)
     ☐ When a sample is ND, result unit should not be displayed
         ☐ When a sample has not been analyzed yet, (NULL in db) flag should be displayed in SampleTable
     ☐ onView and other such functions should not be passed to components if they only navigate.  Just define them at the component level.
-    ☐ Add tech assigned label to ProjectDetails page.
-    ☐ Create log-out button with confirmation
+    ☐ Add tech assigned/notAssigned label to ProjectDetails page.
+    
+    
+    ☐ Implement Auth/Auth
 
 
 Nice-to-haves:
     ☐ Create complex project number from date (YYYY00001)
-    ☐ Auth
     ☐ Make sidebar collapseable with icons to replace page titles 
         sidebar or top nav bar?
     ☐ Implement darkmode for site (settings page?, what else would be on settings page?)

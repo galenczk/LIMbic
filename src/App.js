@@ -9,10 +9,6 @@ import AddClientPage from "./pages/clients/AddClientPage";
 import EditClientPage from "./pages/clients/EditClientPage";
 import ClientDetailsPage from "./pages/clients/ClientDetailsPage";
 
-import AllManagersPage from "./pages/managers/AllManagersPage";
-import AddManagerPage from "./pages/managers/AddManagerPage";
-import EditManagerPage from "./pages/managers/EditManagerPage"
-
 import AllProjectsPage from "./pages/projects/AllProjectsPage";
 import AddProjectPage from "./pages/projects/AddProjectPage";
 import EditProjectPage from "./pages/projects/EditProjectPage";
@@ -40,10 +36,6 @@ export default function App() {
                         <Route path="/clients/add" exact element={<AddClientPage />} />
                         <Route path="/clients/edit/:id_client" exact element={<EditClientPage />} />
                         <Route path="/clients/:id_client" exact element={<ClientDetailsPage />} />
-
-                        <Route path="/managers" exact element={<AllManagersPage />} />
-                        <Route path="/managers/add" exact element={<AddManagerPage />} />
-                        <Route path="/managers/edit/:id_manager" exact element={<EditManagerPage />} />
 
                         <Route path="/projects" exact element={<AllProjectsPage />} />
                         <Route path="/projects/add" exact element={<AddProjectPage />} />
