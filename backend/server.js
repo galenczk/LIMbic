@@ -293,6 +293,32 @@ app.post("/techs/update", (req, res) => {
   });
 });
 
+//ROUTE -- DELETE SPECIFIC CLIENT ON id_client
+app.post(`/techs/delete`, (req, res) => {
+  const { id_tech } = req.body;
+
+  const query = `
+                START TRANSACTION;
+
+                INSERT INTO DeletedTechnicians (tech_name, tech_phone, tech_email, id_tech)
+                SELECT tech_name, tech_phone, tech_email, id_tech
+                FROM Technicians
+                WHERE id_tech = ?;
+
+                DELETE FROM Technicians
+                WHERE id_tech = ?;
+                COMMIT;
+                `;
+
+  db.pool.query(query, [id_tech, id_tech], (error) => {
+    if (!error) {
+      res.status(200).send(`Delete of Technician ${id_tech} successful.`);
+    } else {
+      console.log(error);
+    }
+  });
+});
+
 /**
  * **********************************SAMPLE ROUTES*******************************************
  */

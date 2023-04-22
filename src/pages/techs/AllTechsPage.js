@@ -7,37 +7,35 @@ import axios from "axios";
 import TechTable from "../../components/techs/TechTable";
 
 export default function AllTechsPage() {
-    const [techs, setTechs] = useState([]);
+  const [techs, setTechs] = useState([]);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    async function loadTechs() {
-        const response = await axios.get("http://localhost:3030/techs");
-        const techs = response.data;
-        setTechs(techs);
-    }
+  async function loadTechs() {
+    const response = await axios.get("http://localhost:3030/techs");
+    const techs = response.data;
+    setTechs(techs);
+  }
 
-    useEffect(() => {
-        loadTechs();
-    }, []);
+  useEffect(() => {
+    loadTechs();
+  }, []);
 
-    return (
-        <div className="flex flex-col h-full">
-            <div className="flex justify-between">
-                <h3 className="text-2xl p-4">Technicians</h3>
-            </div>
-
-            <TechTable techs={techs} />
-            <div className="mt-auto m-4">
-                <button
-                    onClick={() => {
-                        navigate("/techs/add");
-                    }}
-                    className="btn btn-green"
-                >
-                    Add New Tech
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex flex-col h-full">
+      <div className="flex justify-between">
+        <h3 className="text-2xl p-4">Technicians</h3>
+        <button
+          onClick={() => {
+            navigate("/techs/add");
+          }}
+          className="btn btn-green"
+        >
+          Add New Tech
+        </button>
+      </div>
+      <TechTable techs={techs} />
+      <div className="mt-auto m-4"></div>
+    </div>
+  );
 }
