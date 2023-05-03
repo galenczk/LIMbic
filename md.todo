@@ -1,13 +1,15 @@
 
 Tomorrow's work:
 
-    
-
+    ☐ Move to generic "entity" page for "All" pages.
+    ☐ Move to generic page for "Add" pages.
+    ☐ Move to generic page for "Edit" pages.
+    Styling these pages should be easy then
 
 
     
 Rest:
-    ☐ When no projects, display a message "there are no open projects..."
+    ✔ When no projects, display a message "there are no open projects..." @done(23-05-02 22:27)
     ☐ Implement a client_notes editing function.
     ☐ Implement a technician project assigning function.
     ☐ Style tables 

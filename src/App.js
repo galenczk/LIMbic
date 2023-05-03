@@ -23,6 +23,8 @@ import EditTechPage from "./pages/techs/EditTechPage";
 
 import TrashPage from "./pages/thingsUnseen/TrashPage";
 
+import AllProjectsPageGen from "./pages/projects/AllProjectsPageGen";
+
 // Components
 import SideBar from "./components/SideBar";
 
@@ -45,8 +47,9 @@ export default function App() {
             <Route path="/projects/:id_project" exact element={<ProjectDetailsPage />} />
             <Route path="/projects/edit-samples/:id_project" exact element={<EditSamplesPage />} />
             <Route path="/projects/edit-results/:id_project" exact element={<SampleResultsPage />} />
-            
-            
+
+            <Route path="/projects-gentest" exact element={<AllProjectsPageGen />} />
+
             <Route path="/completed" exact element={<CompletedProjectsPage />} />
 
             <Route path="/techs" exact element={<AllTechsPage />} />
