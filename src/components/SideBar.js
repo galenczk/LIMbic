@@ -31,6 +31,12 @@ export default function SideBar({ children }) {
             >
               Technicians
             </NavLink>
+            <NavLink
+              to="/completed"
+              className={({ isActive }) => (isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4")}
+            >
+              Completed Projects
+            </NavLink>
             <div className="mt-auto"/>
             <NavLink
               to="/trash"

@@ -6,12 +6,30 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
+import ConfirmationModal from "../../components/ConfirmationModal";
+
+
 export default function EditTechPage() {
   const navigate = useNavigate();
 
   const { id_tech } = useParams();
 
   const [tech, setTech] = useState({});
+
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  const handleDelete = () => {
+    setShowConfirmationModal(true);
+  };
+
+  const handleConfirmDeletion = () => {
+    setShowConfirmationModal(false);
+    onDelete(id_tech);
+  };
+
+  const handleCancelDeletion = () => {
+    setShowConfirmationModal(false);
+  };
 
   async function loadTech(id_tech) {
     const response = await axios.get(`http://localhost:3030/techs/${id_tech}`);
@@ -108,7 +126,22 @@ export default function EditTechPage() {
               </Form>
             </Formik>
             <div className="mt-24">
-              <button className="btn btn-red" onClick={() => {onDelete(tech.id_tech)}}>Delete Technician</button>
+              <button
+                className="btn btn-blue"
+                onClick={() => {
+                  handleDelete();
+                }}
+              >
+                Delete Technician
+              </button>
+
+              {showConfirmationModal && (
+                <ConfirmationModal
+                  message="Are you sure you want to delete this technician?"
+                  confirmAction={handleConfirmDeletion}
+                  cancelAction={handleCancelDeletion}
+                />
+              )}
             </div>
           </div>
         </div>

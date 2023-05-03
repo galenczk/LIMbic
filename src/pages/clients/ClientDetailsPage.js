@@ -5,11 +5,29 @@ import axios from "axios";
 
 import ProjectTableClientPage from "../../components/projects/clientPage/ProjectTableClientPage";
 
+import ConfirmationModal from "../../components/ConfirmationModal";
+
 export default function ClientDetailsPage() {
   const { id_client } = useParams();
 
   const [client, setClient] = useState([]);
   const [projects, setProjects] = useState([]);
+
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  const handleDelete = () => {
+    setShowConfirmationModal(true);
+  };
+
+  const handleConfirmDeletion = () => {
+    setShowConfirmationModal(false);
+    onDelete(id_client);
+  };
+
+  const handleCancelDeletion = () => {
+    setShowConfirmationModal(false);
+  };
+
 
   async function loadClient(id_client) {
     const response = await axios.get(`http://localhost:3030/clients/${id_client}`);
@@ -83,11 +101,19 @@ export default function ClientDetailsPage() {
         <button
           className="btn btn-blue"
           onClick={() => {
-            onDelete(client.id_client);
+            handleDelete();
           }}
         >
           Delete Client
         </button>
+
+        {showConfirmationModal && (
+          <ConfirmationModal
+            message="Are you sure you want to delete this client?"
+            confirmAction={handleConfirmDeletion}
+            cancelAction={handleCancelDeletion}
+          />
+        )}
       </div>
     </div>
   );

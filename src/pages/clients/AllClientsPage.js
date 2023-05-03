@@ -32,8 +32,14 @@ export default function AllClientsPage() {
                     navigate("/clients/add")
                 }} className="btn btn-green">Add New Client</button>
             </div>
-
-            <ClientTable clients={clients} onView={onView}/>
+            <div>
+                {clients.length ? <ClientTable clients={clients} onView={onView}/> : (
+                    <div className="text-center mt-12">
+                        <p className="text-xl">There are no clients at this time.</p>
+                    </div>
+                )}
+            </div>
+            
         </>
     );
 }

@@ -39,7 +39,12 @@ export default function AllProjectsPage() {
         </div>
 
         <div>
-          <ProjectTable projects={projects} onView={onView} />
+          {projects.length ? <ProjectTable projects={projects} onView={onView} /> : (
+          <div className="text-center mt-12">
+            <p className="text-xl">There are no open projects at this time.</p>
+          </div>
+          
+          )}
         </div>
       </div>
     </>

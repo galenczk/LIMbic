@@ -5,15 +5,35 @@ import { useNavigate } from "react-router-dom";
 import TrashTable from "../../components/thingsUnseen/TrashTable";
 
 function DelProjectsTable({ data, columns, restoreItem }) {
-  return <TrashTable data={data} columns={columns} type={1} restoreItem={restoreItem} />;
+  return <TrashTable data={data} columns={columns} type={1} restoreItem={restoreItem} />
+  
+  //return columns.length ? (
+  //  
+  //) : (
+  //  <div className="text-center mt-12">
+  //    <p className="text-xl">There are no deleted projects at this time.</p>
+  //  </div>
+  //);
 }
 
 function DelClientsTable({ data, columns, restoreItem }) {
-  return <TrashTable data={data} columns={columns} type={2} restoreItem={restoreItem} />;
+  return columns.length ? (
+    <TrashTable data={data} columns={columns} type={2} restoreItem={restoreItem} />
+  ) : (
+    <div className="text-center mt-12">
+      <p className="text-xl">There are no deleted clients at this time.</p>
+    </div>
+  );
 }
 
 function DelTechsTables({ data, columns, restoreItem }) {
-  return <TrashTable data={data} columns={columns} type={3} restoreItem={restoreItem} />;
+  return columns.length ? (
+    <TrashTable data={data} columns={columns} type={3} restoreItem={restoreItem} />
+  ) : (
+    <div className="text-center mt-12">
+      <p className="text-xl">There are no deleted technicians at this time.</p>
+    </div>
+  );
 }
 
 function TabNavigation() {
@@ -60,11 +80,10 @@ function TabNavigation() {
   async function restoreItem(id, type) {
     const response = await axios.post(`http://localhost:3030/restore`, { id, type });
     if (response.status === 200) {
-      type === 1
-        ? setProjectData((prevData) => prevData.filter((project) => project.id_project !== id))
-        : type === 2
-        ? setClientData((prevData) => prevData.filter((client) => client.id_client !== id))
-        : setTechData((prevData) => prevData.filter((tech) => tech.id_tech !== id));
+      type === 1 ? (
+        loadDeletedProjects()
+      ) : type === 2 ? loadDeletedClients() : loadDeletedTechs();
+      
     }
   }
 
@@ -96,9 +115,30 @@ function TabNavigation() {
           Technicians
         </button>
       </div>
-      {activeTab === 1 && <DelProjectsTable data={projectData} columns={projectColumns} restoreItem={restoreItem} />}
-      {activeTab === 2 && <DelClientsTable data={clientData} columns={clientColumns} restoreItem={restoreItem} />}
-      {activeTab === 3 && <DelTechsTables data={techData} columns={techColumns} restoreItem={restoreItem} />}
+      {activeTab === 1 &&
+        (projectData.length ? (
+          <DelProjectsTable data={projectData} columns={projectColumns} restoreItem={restoreItem} />
+        ) : (
+          <div className="text-center mt-12">
+            <p className="text-xl">There are no deleted projects at this time.</p>
+          </div>
+        ))}
+      {activeTab === 2 &&
+        (clientData.length ? (
+          <DelClientsTable data={clientData} columns={clientColumns} restoreItem={restoreItem} />
+        ) : (
+          <div className="text-center mt-12">
+            <p className="text-xl">There are no deleted clients at this time.</p>
+          </div>
+        ))}
+      {activeTab === 3 &&
+        (techData.length ? (
+          <DelTechsTables data={techData} columns={techColumns} restoreItem={restoreItem} />
+        ) : (
+          <div className="text-center mt-12">
+            <p className="text-xl">There are no deleted technicians at this time.</p>
+          </div>
+        ))}
     </div>
   );
 }

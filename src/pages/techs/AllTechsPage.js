@@ -34,8 +34,15 @@ export default function AllTechsPage() {
           Add New Tech
         </button>
       </div>
-      <TechTable techs={techs} />
-      <div className="mt-auto m-4"></div>
+      <div>
+        {techs.length ? <TechTable techs={techs} /> : (
+          <div className="text-center mt-12">
+            <p className="text-xl">There are no technicians at this time.</p>
+          </div>
+        )}
+      </div>
+      
+      
     </div>
   );
 }

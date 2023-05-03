@@ -2,14 +2,11 @@
 Tomorrow's work:
 
     
-    ☐ Option to "complete" projects.
-    ☐ Reopen projects that have been completed.
 
-    ☐ Delete the Manager entity completely?
 
- 
+
+    
 Rest:
-    ☐ Implement a confirmation on delete functions
     ☐ When no projects, display a message "there are no open projects..."
     ☐ Implement a client_notes editing function.
     ☐ Implement a technician project assigning function.
@@ -28,14 +25,19 @@ Rest:
     ☐ When no tech is assigned to project, should display an alert on AllProjects
     ☐ Client address should be separated into address, city, state, zip
     ☐ ProjectDetailsPage, "samples" should be "sample" when only one sample.
-    ✔ Make "completed" table for projects. @done(23-04-11 13:31)
-    ✔ Make "deleted" versions of every table and have delete action move items to these tables with a stored "deleted on" timestamp. @done(23-04-11 13:31)
     ☐ When a sample is ND, result unit should not be displayed
         ☐ When a sample has not been analyzed yet, (NULL in db) flag should be displayed in SampleTable
     ☐ onView and other such functions should not be passed to components if they only navigate.  Just define them at the component level.
     ☐ Add tech assigned/notAssigned label to ProjectDetails page.
-    
-    
+    ☐ Hover effect for buttongs
+
+    ✔ Make "completed" table for projects. @done(23-04-11 13:31)
+    ✔ Make "deleted" versions of every table and have delete action move items to these tables with a stored "deleted on" timestamp. @done(23-04-11 13:31)
+    ✔ Option to "complete" projects. @done(23-05-02 21:21)
+    ✔ Reopen projects that have been completed. @done(23-05-02 21:21)
+    ✔ Delete the Manager entity completely? @done(23-05-02 21:21)
+    ✔ Implement a confirmation on delete functions @done(23-05-02 21:48)
+
     ☐ Implement Auth/Auth
 
 

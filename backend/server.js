@@ -127,6 +127,18 @@ app.get("/projects", (req, res) => {
   });
 });
 
+// ROUTE -- GET ALL COMPLETED PROJECTS
+app.get("/projects/completed", (req, res) => {
+  const query = "SELECT * FROM CompletedProjects;";
+  db.pool.query(query, (error, result) => {
+    if (!error) {
+      res.send(JSON.stringify(result));
+    } else {
+      console.log(error);
+    }
+  });
+});
+
 // ROUTE -- GET SPECIFIC PROJECT ON id_project
 app.get("/projects/:id_project", (req, res) => {
   const id_project = req.params.id_project;
@@ -224,6 +236,58 @@ app.post(`/projects/delete`, (req, res) => {
   db.pool.query(query, [id_project, id_project], (error) => {
     if (!error) {
       res.status(200).send(`Delete of Project ${id_project} successful.`);
+    } else {
+      console.log(error);
+    }
+  });
+});
+
+//ROUTE -- COMPLETE SPECIFIC PROJECT ON id_project
+app.post(`/projects/complete`, (req, res) => {
+  const { id_project } = req.body;
+
+  const query = `
+                START TRANSACTION;
+
+                INSERT INTO CompletedProjects (id_project, id_client, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time, project_type)
+                SELECT id_project, id_client, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time, project_type
+                FROM Projects
+                WHERE id_project = ?;
+
+                DELETE FROM Projects
+                WHERE id_project = ?;
+                COMMIT;
+                `;
+
+  db.pool.query(query, [id_project, id_project], (error) => {
+    if (!error) {
+      res.status(200).send(`Completion of Project ${id_project} successful.`);
+    } else {
+      console.log(error);
+    }
+  });
+});
+
+//ROUTE -- REOPEN SPECIFIC PROJECT ON id_project
+app.post(`/projects/reopen`, (req, res) => {
+  const { id_project } = req.body;
+
+  const query = `
+                START TRANSACTION;
+
+                INSERT INTO Projects (id_project, id_client, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time, project_type)
+                SELECT id_project, id_client, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time, project_type
+                FROM CompletedProjects
+                WHERE id_project = ?;
+
+                DELETE FROM CompletedProjects
+                WHERE id_project = ?;
+                COMMIT;
+                `;
+
+  db.pool.query(query, [id_project, id_project], (error) => {
+    if (!error) {
+      res.status(200).send(`Reopening of Project ${id_project} successful.`);
     } else {
       console.log(error);
     }
@@ -368,7 +432,6 @@ app.post("/samples/update", (req, res) => {
 
   let subQuery = "";
 
-  // REFACTOR?
   for (let i = 0; i < data.id_sample.length; i++) {
     let curr = "(";
     curr += data.id_sample[i];
@@ -499,6 +562,9 @@ app.post("/samples/results/update", (req, res) => {
 /**
  * **********************************DELETED ENTITY ROUTES*******************************************
  */
+
+//*********************************Could refactor these to use a single route and a ternary statement.
+
 // ROUTE -- GET ALL DELETED CLIENTS
 app.get("/delClients", (req, res) => {
   const query = "SELECT * FROM DeletedClients;";
@@ -586,6 +652,8 @@ app.post(`/restore`, (req, res) => {
     }
   });
 });
+
+
 
 //*******************************************************************************************************
 /**
