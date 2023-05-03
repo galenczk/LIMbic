@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-import ProjectTableClientPage from "../../components/projects/ClientPage/ProjectTableClientPage";
+import ProjectTableClientPage from "../../components/projects/clientPage/ProjectTableClientPage";
 
 export default function ClientDetailsPage() {
   const { id_client } = useParams();
@@ -47,6 +47,14 @@ export default function ClientDetailsPage() {
         <h2>{client.client_address}</h2>
         <div className="w-24" />
         <h2>{client.client_phone}</h2>
+        <button
+          className="btn btn-red"
+          onClick={() => {
+            navigate("/clients");
+          }}
+        >
+          Back
+        </button>
       </div>
       <div>
         <h2>{client.client_type}</h2>
@@ -59,8 +67,6 @@ export default function ClientDetailsPage() {
         <h2>Completed Projects</h2>
         <ProjectTableClientPage projects={projects} />
       </div>
-
-      
 
       <div id="bottom buttons" className="flex mt-auto">
         <div className="mx-auto" />

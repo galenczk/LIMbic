@@ -46,6 +46,7 @@ export default function ProjectDetailsPage() {
           <div className="mx-auto" />
           <h2>{project.id_client}</h2>
           <div className="mx-auto" />
+          <button className="btn btn-red" onClick={() => {navigate("/projects")}}>Back</button>
         </div>
         <div className="flex mt-6">
           <h2>{project.project_type}</h2>

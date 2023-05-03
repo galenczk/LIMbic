@@ -31,6 +31,13 @@ export default function SideBar({ children }) {
             >
               Technicians
             </NavLink>
+            <div className="mt-auto"/>
+            <NavLink
+              to="/trash"
+              className={({ isActive }) => (isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4")}
+            >
+              Trash
+            </NavLink>
           </nav>
           <main className=" h-screen w-full flex flex-col flex-grow">{children}</main>
         </div>

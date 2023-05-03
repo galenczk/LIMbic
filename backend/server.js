@@ -496,6 +496,97 @@ app.post("/samples/results/update", (req, res) => {
   });
 });
 
+/**
+ * **********************************DELETED ENTITY ROUTES*******************************************
+ */
+// ROUTE -- GET ALL DELETED CLIENTS
+app.get("/delClients", (req, res) => {
+  const query = "SELECT * FROM DeletedClients;";
+  db.pool.query(query, (error, result) => {
+    if (!error) {
+      res.send(JSON.stringify(result));
+    } else {
+      console.log(error);
+    }
+  });
+});
+// ROUTE -- GET ALL DELETED PROJECTS
+app.get("/delProjects", (req, res) => {
+  const query = "SELECT * FROM DeletedProjects;";
+  db.pool.query(query, (error, result) => {
+    if (!error) {
+      res.send(JSON.stringify(result));
+    } else {
+      console.log(error);
+    }
+  });
+});
+// ROUTE -- GET ALL DELETED TECHNICIANS
+app.get("/delTechs", (req, res) => {
+  const query = "SELECT * FROM DeletedTechnicians;";
+  db.pool.query(query, (error, result) => {
+    if (!error) {
+      res.send(JSON.stringify(result));
+    } else {
+      console.log(error);
+    }
+  });
+});
+
+//ROUTE -- RESTORE ITEM ON ID
+app.post(`/restore`, (req, res) => {
+  const type = req.body.type;
+  const id = req.body.id;
+
+  const queryProjects = `
+                START TRANSACTION;
+
+                INSERT INTO Projects (id_project, id_client, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time, project_type)
+                SELECT id_project, id_client, id_manager, id_tech, project_num_client, project_name, num_samples, turn_around_time, project_type
+                FROM DeletedProjects
+                WHERE id_project = ?;
+
+                DELETE FROM DeletedProjects
+                WHERE id_project = ?;
+                COMMIT;
+                `;
+  const queryClients = `
+                START TRANSACTION;
+
+                INSERT INTO Clients (client_name, client_address, client_phone, client_email, client_type, id_client)
+                SELECT client_name, client_address, client_phone, client_email, client_type, id_client
+                FROM DeletedClients
+                WHERE id_client = ?;
+
+                DELETE FROM DeletedClients
+                WHERE id_client = ?;
+                COMMIT;
+                `;
+  const queryTechs = `
+                START TRANSACTION;
+
+                INSERT INTO Technicians (tech_name, tech_phone, tech_email, id_tech)
+                SELECT tech_name, tech_phone, tech_email, id_tech
+                FROM DeletedTechnicians
+                WHERE id_tech = ?;
+
+                DELETE FROM DeletedTechnicians
+                WHERE id_tech = ?;
+                COMMIT;
+                `;
+
+  let query;
+  type === 1 ? (query = queryProjects) : type === 2 ? (query = queryClients) : (query = queryTechs);
+
+  db.pool.query(query, [id, id], (error) => {
+    if (!error) {
+      res.status(200).send(`Restore of ${type} ${id} successful!`);
+    } else {
+      console.log(error);
+    }
+  });
+});
+
 //*******************************************************************************************************
 /**
  * ERROR HANDLING
