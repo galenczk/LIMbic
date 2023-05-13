@@ -23,11 +23,7 @@
   } */
 
   .btn{
-    @apply inline-block rounded bg-fire px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white 
-  }
-
-  .btn-blue{
-    @apply btn 
+    @apply inline-block rounded bg-fire px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white;
   }
 
   /* Style a table */

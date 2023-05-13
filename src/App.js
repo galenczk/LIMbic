@@ -8,6 +8,7 @@ import AllClientsPage from "./pages/clients/AllClientsPage";
 import AddClientPage from "./pages/clients/AddClientPage";
 import EditClientPage from "./pages/clients/EditClientPage";
 import ClientDetailsPage from "./pages/clients/ClientDetailsPage";
+import EditClientNotes from "./pages/clients/EditClientNotes";
 
 import AllProjectsPage from "./pages/projects/AllProjectsPage";
 import AddProjectPage from "./pages/projects/AddProjectPage";
@@ -22,8 +23,6 @@ import AddTechPage from "./pages/techs/AddTechPage";
 import EditTechPage from "./pages/techs/EditTechPage";
 
 import TrashPage from "./pages/thingsUnseen/TrashPage";
-
-import AllProjectsPageGen from "./pages/projects/AllProjectsPageGen";
 
 // Components
 import SideBar from "./components/SideBar";
@@ -40,6 +39,7 @@ export default function App() {
             <Route path="/clients/add" exact element={<AddClientPage />} />
             <Route path="/clients/edit/:id_client" exact element={<EditClientPage />} />
             <Route path="/clients/:id_client" exact element={<ClientDetailsPage />} />
+            <Route path="/clients/edit-notes/:id_client" exact element={<EditClientNotes />} />
 
             <Route path="/projects" exact element={<AllProjectsPage />} />
             <Route path="/projects/add" exact element={<AddProjectPage />} />
@@ -47,8 +47,6 @@ export default function App() {
             <Route path="/projects/:id_project" exact element={<ProjectDetailsPage />} />
             <Route path="/projects/edit-samples/:id_project" exact element={<EditSamplesPage />} />
             <Route path="/projects/edit-results/:id_project" exact element={<SampleResultsPage />} />
-
-            <Route path="/projects-gentest" exact element={<AllProjectsPageGen />} />
 
             <Route path="/completed" exact element={<CompletedProjectsPage />} />
 

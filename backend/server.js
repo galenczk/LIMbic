@@ -16,7 +16,7 @@ const db = require("./db-connector");
  */
 // ROUTE -- GET ALL CLIENTS
 app.get("/clients", (req, res) => {
-  const query = "SELECT * FROM Clients;";
+  const query = "SELECT id_client, client_name, client_address, client_phone, client_email, client_type FROM Clients;";
   db.pool.query(query, (error, result) => {
     if (!error) {
       res.send(JSON.stringify(result));
@@ -80,6 +80,22 @@ app.post("/clients/update", (req, res) => {
     console.log(req);
     if (!error) {
       res.status(200).send(`Update of Client ${id_client} successful!`);
+    } else {
+      console.log(error);
+    }
+  });
+});
+//ROUTE -- UPDATE AN EXISTING CLIENT ON id_client
+app.post("/clients/update-notes", (req, res) => {
+  const id_client = req.body.id_client;
+  const client_notes = req.body.client_notes;
+
+  const query = "UPDATE Clients SET client_notes = ? WHERE Clients.id_client = ?;";
+
+  db.pool.query(query, [client_notes, id_client], (error) => {
+    console.log(req);
+    if (!error) {
+      res.status(200).send(`Update of notes for Client ${id_client} successful!`);
     } else {
       console.log(error);
     }
@@ -652,8 +668,6 @@ app.post(`/restore`, (req, res) => {
     }
   });
 });
-
-
 
 //*******************************************************************************************************
 /**

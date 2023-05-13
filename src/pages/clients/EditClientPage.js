@@ -26,48 +26,42 @@ export default function EditClientPage() {
   // DOM return
   return (
     <>
-      <h1 class="text-3xl p-6 text-center"> Edit Client Details</h1>
+      <h1 className="text-3xl p-6 text-center"> Edit Client Details</h1>
 
-      <div class="flex w-2/3 place-self-center">
-        <div id="Existing Information" class="p-8 bg-gray-300 mx-auto w-1/2 flex flex-col">
-          <h1 class="text-xl text-center">Current Information</h1>
-          <div class="h-12" />
-          <table class="text-left">
+      <div className="flex w-2/3 place-self-center">
+        <div id="Existing Information" className="p-8 bg-gray-300 mx-auto w-1/2 flex flex-col">
+          <h1 className="text-xl text-center">Current Information</h1>
+          <div className="h-12" />
+          <table className="text-left">
             <tbody>
               <tr>
                 <th>Name</th>
-                <div class="w-24" />
                 <td>{client.client_name}</td>
               </tr>
             </tbody>
             <tbody>
               <tr>
                 <th>Address</th>
-                <div class="w-24" />
                 <td>{client.client_address}</td>
               </tr>
               <tr>
                 <th>Phone</th>
-                <div class="w-24" />
                 <td>{client.client_phone}</td>
               </tr>
               <tr>
                 <th>Email</th>
-                <div class="w-24" />
                 <td>{client.client_email}</td>
               </tr>
               <tr>
                 <th>Type</th>
-                <div class="w-24" />
                 <td>{client.client_type}</td>
               </tr>
-              
             </tbody>
           </table>
-          <div class="flex-grow" />
-          <div class="">
+          <div className="flex-grow" />
+          <div className="">
             <button
-              class="btn btn-blue"
+              className="btn btn-blue"
               type="reset"
               onClick={() => {
                 navigate(`/clients/${client.id_client}`);
@@ -77,7 +71,7 @@ export default function EditClientPage() {
             </button>
           </div>
         </div>
-        <div id="edit tech form" class="p-8 bg-gray-300 mx-auto w-1/2">
+        <div id="edit tech form" className="p-8 bg-gray-300 mx-auto w-1/2">
           <Formik
             enableReinitialize={true}
             initialValues={{
@@ -95,7 +89,7 @@ export default function EditClientPage() {
               }
             }}
           >
-            <Form class="flex flex-col">
+            <Form className="flex flex-col">
               <label for="client_name">Name</label>
               <Field type="text" id="client_name" name="client_name" />
               <label for="client_address">Address</label>
@@ -107,11 +101,11 @@ export default function EditClientPage() {
               <label for="client_type">Type</label>
               <Field type="text" id="client_type" name="client_type" />
 
-              <div class="flex justify-between mt-6">
-                <button class="btn-small btn-gray" type="reset">
+              <div className="flex justify-between mt-6">
+                <button className="btn-small btn-gray" type="reset">
                   Reset
                 </button>
-                <button class="btn btn-green" type="submit">
+                <button className="btn btn-green" type="submit">
                   Update
                 </button>
               </div>

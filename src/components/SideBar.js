@@ -7,7 +7,7 @@ export default function SideBar({ children }) {
   return (
     <div className="">
       <div className="sticky top-0 z-50">
-        <header className="bg-midnight text-white p-2">EnviroLab - Analytical Laboratory Database Management</header>
+        <header className="bg-midnight text-white p-2">LIMbic -- Laboratory Information Management</header>
       </div>
 
       {location.pathname !== "/" ? (
@@ -25,6 +25,7 @@ export default function SideBar({ children }) {
             >
               Clients
             </NavLink>
+            <div className="mt-auto" />
             <NavLink
               to="/techs"
               className={({ isActive }) => (isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4")}
@@ -37,7 +38,7 @@ export default function SideBar({ children }) {
             >
               Completed Projects
             </NavLink>
-            <div className="mt-auto"/>
+
             <NavLink
               to="/trash"
               className={({ isActive }) => (isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4")}
@@ -45,14 +46,16 @@ export default function SideBar({ children }) {
               Trash
             </NavLink>
           </nav>
-          <main className=" h-screen w-full flex flex-col flex-grow">{children}</main>
+          <main className=" min-h-screen w-full flex flex-col flex-grow">{children}</main>
         </div>
       ) : (
-        <main className="h-screen w-full">{children}</main>
+        <div className="flex flex-col bg-red-400">
+          <main className="">{children}</main>
+        </div>
       )}
 
       <div>
-        <footer className="flex justify-center  bg-myGrey2 p-0.5">
+        <footer className="flex justify-center bg-myGrey2 p-0.5">
           <p>Galen Ciszek</p>
           <p> &copy; 2023</p>
         </footer>

@@ -1,26 +1,23 @@
 
+LIMbic -- Laboratory Information Management
+
 Tomorrow's work:
 
-    ☐ Move to generic "entity" page for "All" pages.
-    ☐ Move to generic page for "Add" pages.
-    ☐ Move to generic page for "Edit" pages.
-    Styling these pages should be easy then
-
+    ☐ Go through each entity at a time and style their pages 
 
     
 Rest:
-    ✔ When no projects, display a message "there are no open projects..." @done(23-05-02 22:27)
-    ☐ Implement a client_notes editing function.
+    
+    ✔ Implement a client_notes editing function. @done(23-05-12 20:24)
+    ☐ Border for client notes to match other colors
     ☐ Implement a technician project assigning function.
     ☐ Style tables 
         ☐ Use a primary, secondary, tert scheme for buttons
         ☐ Decide on color palette (range of greys and then some accents)
         ☐ Make small btn css classes
     ☐ The projects list on ClientDetails need to be different.
-    ☐ Validate entries to forms.  
     ☐ Add in DB restrictions again (non-null and FKs).
     ☐ Make quantity units set automatically based on project type
-    ☐ Create button to set all sample data form values (date_collected, medium, quantity) the same as first row.
     ☐ Make foriegn keys in Projects display name of other entity
     ☐ Check that all tables presenting data have correct headers.
     ☐ Add project page should display techs and their work loads for consideration when assigning projects.
@@ -33,18 +30,24 @@ Rest:
     ☐ Add tech assigned/notAssigned label to ProjectDetails page.
     ☐ Hover effect for buttongs
 
+    ✔ When no projects, display a message "there are no open projects..." @done(23-05-02 22:27)
     ✔ Make "completed" table for projects. @done(23-04-11 13:31)
     ✔ Make "deleted" versions of every table and have delete action move items to these tables with a stored "deleted on" timestamp. @done(23-04-11 13:31)
     ✔ Option to "complete" projects. @done(23-05-02 21:21)
     ✔ Reopen projects that have been completed. @done(23-05-02 21:21)
     ✔ Delete the Manager entity completely? @done(23-05-02 21:21)
     ✔ Implement a confirmation on delete functions @done(23-05-02 21:48)
+    ✔ Move to generic "entity" page for "All" pages. @done(23-05-12 17:51)
+
 
     ☐ Implement Auth/Auth
 
 
 Nice-to-haves:
     ☐ Create complex project number from date (YYYY00001)
+    ☐ Validate entries to forms.  
+    ☐ Create button to set all sample data form values (date_collected, medium, quantity) the same as first row.
+
     ☐ Make sidebar collapseable with icons to replace page titles 
         sidebar or top nav bar?
     ☐ Implement darkmode for site (settings page?, what else would be on settings page?)

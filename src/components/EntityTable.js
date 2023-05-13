@@ -23,7 +23,7 @@ export default function EntityTable({ entities, columns, onView }) {
                 </td>
               ))}
               <td className="">
-                <button onClick={() => onView(entity[Object.keys(entity)[0]])}>View</button>
+                <button onClick={() => onView(entity[Object.keys(entity)[0]])} className="btn" >View</button>
               </td>
             </tr>
           ))}

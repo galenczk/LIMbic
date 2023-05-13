@@ -12,7 +12,7 @@ export default function ProjectDetailsPage() {
 
   const [project, setProject] = useState([]);
   const [samples, setSamples] = useState([]);
-  
+
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const handleDelete = () => {
@@ -28,8 +28,6 @@ export default function ProjectDetailsPage() {
     setShowConfirmationModal(false);
   };
 
-
-  
   async function loadProject(id_project) {
     const response = await axios.get(`http://localhost:3030/projects/${id_project}`);
     const project = response.data[0];
@@ -64,29 +62,35 @@ export default function ProjectDetailsPage() {
 
   return (
     <div className="flex flex-col m-4 h-full">
-      <div className="flex">
-        <h2>{project.id_project}</h2>
-        <div className="w-24" />
-        <h2>{project.project_name}</h2>
-        <div className="mx-auto" />
-        <h2>{project.id_client}</h2>
-        <div className="mx-auto" />
-        <button
-          className="btn btn-red"
-          onClick={() => {
-            navigate("/projects");
-          }}
-        >
-          Back
-        </button>
+      <div>
+        <div className="flex ">
+          <div>
+            <p className="text-2xl">{project.project_name}</p>
+            <div className="mx-auto" />
+            <p className="text-xl mt-2">[client]</p>
+          </div>
+          <div></div>
+
+          <div className="mx-auto" />
+
+          <button
+            className="btn my-auto"
+            onClick={() => {
+              navigate("/projects");
+            }}
+          >
+            Back
+          </button>
+        </div>
+        <div className="flex mt-6">
+          <h2>{project.project_type}</h2>
+          <div className="w-24" />
+          <h2 className="">{project.num_samples + " samples"}</h2>
+          <div className="w-24" />
+          <h2>{project.turn_around_time}</h2>
+        </div>
       </div>
-      <div className="flex mt-6">
-        <h2>{project.project_type}</h2>
-        <div className="w-24" />
-        <h2 className="">{project.num_samples + " samples"}</h2>
-        <div className="w-24" />
-        <h2>{project.turn_around_time}</h2>
-      </div>
+
       <div id="samples table" className="mt-8 flex flex-col gap-4">
         <div className="flex m-2">
           <h2>Samples</h2>
@@ -126,15 +130,18 @@ export default function ProjectDetailsPage() {
           className="btn btn-blue"
           onClick={() => {
             handleDelete();
-            
           }}
         >
           Delete Project
         </button>
-        
-        {showConfirmationModal && (<ConfirmationModal message="Are you sure you want to delete this project?" confirmAction={handleConfirmDeletion} cancelAction={handleCancelDeletion} />)}
 
-
+        {showConfirmationModal && (
+          <ConfirmationModal
+            message="Are you sure you want to delete this project?"
+            confirmAction={handleConfirmDeletion}
+            cancelAction={handleCancelDeletion}
+          />
+        )}
       </div>
     </div>
   );

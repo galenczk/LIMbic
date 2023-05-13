@@ -1,45 +1,31 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import AllEntitiesPage from "../AllEntitiesPage";
 
-// Components
-import ClientTable from "../../components/clients/ClientTable";
-
-export default function AllClientsPage() {
-    const [clients, setClients] = useState([]);
-    const navigate = useNavigate()
-
-    async function loadClients() {
-        const response = await axios.get("http://localhost:3030/clients");
-        const clients = response.data;
-        setClients(clients);
-    }
-
-    async function onView(id_client) {
-        navigate(`/clients/${id_client}`);
-    }
-
-    useEffect(() => {
-        loadClients();
-    }, []);
-
-    return (
-        <>
-            <div className="flex justify-between">
-                <h3 className="text-2xl p-4">Clients</h3>
-                <button onClick={() =>{
-                    navigate("/clients/add")
-                }} className="btn btn-green">Add New Client</button>
-            </div>
-            <div>
-                {clients.length ? <ClientTable clients={clients} onView={onView}/> : (
-                    <div className="text-center mt-12">
-                        <p className="text-xl">There are no clients at this time.</p>
-                    </div>
-                )}
-            </div>
-            
-        </>
-    );
+const clientColumns = [
+  {
+    Header: "Client ID",
+    accessor: "id_client",
+  },
+  {
+    Header: "Name",
+    accessor: "client_name",
+  },
+  {
+    Header: "Address",
+    accessor: "client_address",
+  },
+  {
+    Header: "Phone",
+    accessor: "client_phone",
+  },
+  {
+    Header: "Email",
+    accessor: "client_email",
+  },
+  {
+    Header: "Type",
+    accessor: "client_type",
+  }
+];
+export default function AllProjectsPage() {
+  return <AllEntitiesPage name={"clients"} url={"clients"} columns={clientColumns} />;
 }

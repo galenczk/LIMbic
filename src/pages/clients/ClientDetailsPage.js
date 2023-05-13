@@ -28,7 +28,6 @@ export default function ClientDetailsPage() {
     setShowConfirmationModal(false);
   };
 
-
   async function loadClient(id_client) {
     const response = await axios.get(`http://localhost:3030/clients/${id_client}`);
     const client = response.data[0];
@@ -86,11 +85,24 @@ export default function ClientDetailsPage() {
         <ProjectTableClientPage projects={projects} />
       </div>
 
-      <div id="bottom buttons" className="flex mt-auto">
+      <div>
+        <h2 className="mt-8">Client Notes</h2>
+        <div className="w-1/2 h-48 overflow-y-scroll bg-gray-200">
+          {client.client_notes ? (
+            <div>{client.client_notes}</div>
+          ) : (
+            <p>There are no notes for this client at this time.</p>
+          )}
+        </div>
+      </div>
+      <div id="bottom buttons" className="flex mt-6">
+        <button className="btn" onClick={() => navigate(`/clients/edit-notes/${client.id_client}`)}>
+          Edit Client Notes
+        </button>
         <div className="mx-auto" />
 
         <button
-          className="btn btn-blue"
+          className="btn "
           onClick={() => {
             navigate(`/clients/edit/${client.id_client}`);
           }}
@@ -99,7 +111,7 @@ export default function ClientDetailsPage() {
         </button>
         <div className="w-8" />
         <button
-          className="btn btn-blue"
+          className="btn"
           onClick={() => {
             handleDelete();
           }}
