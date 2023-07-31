@@ -9,7 +9,8 @@ export default function SampleTable({ samples, expanded }) {
             <thead className="">
               <tr className="sticky top-0">
                 <th className="w-1/12">Sample No.</th>
-                <th className="">Date Collected</th>
+                <th className="">Label</th>
+                <th className="w-1/12">Date Collected</th>
                 <th className="w-1/12">Medium</th>
                 <th className="">Quantity</th>
                 <th className="">Result</th>
@@ -18,7 +19,7 @@ export default function SampleTable({ samples, expanded }) {
             </thead>
             <tbody>
               {samples.map((sample, i) => (
-                <Sample sample={sample} key={i} />
+                <Sample sample={sample} key={i} index={i}  />
               ))}
             </tbody>
           </table>

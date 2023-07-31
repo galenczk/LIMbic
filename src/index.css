@@ -28,6 +28,9 @@
   .btn-small{
     @apply rounded bg-blue-600 px-1 text-xs uppercase leading-normal text-white;
   }
+  .btn-grey{
+    @apply rounded bg-slate-500 px-1 text-xs uppercase leading-normal text-white;
+  }
 
   /* Style a table */
   table {
