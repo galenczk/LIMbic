@@ -1,3 +1,4 @@
-EnviroLab - Environmental Analytical Laboratory Project Database Management Suite
-Galen Ciszek - 2023
+LIMbic -- Laboratory Information Management
 
+
+Galen Ciszek - 2023

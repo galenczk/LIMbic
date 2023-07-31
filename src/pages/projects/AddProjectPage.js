@@ -51,19 +51,33 @@ export default function AddProjectPage() {
                         project_num_client: "",
                         num_samples: "",
                         turn_around_time: "",
-                        id_client: 1,
+                        id_client: "",
                     }}
                     onSubmit={async (values) => {
                         onAdd(values);
-                    }}
-                >
+                    }}>
                     <Form className="flex flex-col">
                         <label for="id_client">Client</label>
-                        <Field type="text" id="id_client" name="id_client" ></Field>
+                        <Field as="select" id="id_client" name="id_client">
+                            <option value="">Select a client</option>
+                            {clients.map((client) => (
+                                <option
+                                    key={client.id_client}
+                                    value={client.id_client}>
+                                    {client.client_name}
+                                </option>
+                            ))}
+                        </Field>
                         <label for="project_name">Project Name</label>
-                        <Field type="text" id="project_name" name="project_name"></Field>
+                        <Field
+                            type="text"
+                            id="project_name"
+                            name="project_name"></Field>
                         <label for="project_type">Project Type</label>
-                        <Field as="select" id="project_type" name="project_type">
+                        <Field
+                            as="select"
+                            id="project_type"
+                            name="project_type">
                             <option value="">-</option>
                             <option value="asbestos">Asbestos</option>
                             <option value="lead">Lead</option>
@@ -71,13 +85,24 @@ export default function AddProjectPage() {
                             <option value="water">Water</option>
                             <option value="air">Air</option>
                         </Field>
-                        <label for="project_num_client">Client's Project Number</label>
-                        <Field type="text" id="project_num_client" name="project_num_client"></Field>
+                        <label for="project_num_client">
+                            Client's Project Number
+                        </label>
+                        <Field
+                            type="text"
+                            id="project_num_client"
+                            name="project_num_client"></Field>
                         <label for="num_samples">Number of Samples</label>
-                        <Field type="text" id="num_samples" name="num_samples"></Field>
+                        <Field
+                            type="text"
+                            id="num_samples"
+                            name="num_samples"></Field>
 
                         <label for="turn_around_time">Turn Around Time</label>
-                        <Field as="select" id="turn_around_time" name="turn_around_time">
+                        <Field
+                            as="select"
+                            id="turn_around_time"
+                            name="turn_around_time">
                             <option value=""> - </option>
                             <option value="1-2 hrs">1-2 Hours</option>
                             <option value="24 hrs">24 Hours</option>

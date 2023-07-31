@@ -3,47 +3,45 @@ import AllEntitiesPage from "../AllEntitiesPage";
 const projectColumns = [
   {
     Header: "Project ID",
-    accessor: "id_project"
+    accessor: "id_project",
   },
   {
     Header: "Client",
-    accessor: "id_client"
+    accessor: "id_client",
   },
   {
     Header: "Technician",
-    accessor: "id_tech"
+    accessor: "id_tech",
   },
   {
     Header: "Client's Project No.",
-    accessor: "project_num_client"
+    accessor: "project_num_client",
   },
   {
     Header: "Name",
-    accessor: "project_name"
+    accessor: "project_name",
   },
   {
     Header: "No. Samples",
-    accessor: "num_samples"
+    accessor: "num_samples",
   },
   {
     Header: "TAT",
-    accessor: "turn_around_time"
+    accessor: "turn_around_time",
   },
   {
     Header: "Type",
-    accessor: "project_type"
+    accessor: "project_type",
   },
   {
     Header: "Type",
-    accessor: "project_type"
+    accessor: "project_type",
   },
-]
+];
 export default function AllProjectsPage() {
   return (
-    <AllEntitiesPage
-      name={"projects"}
-      url={"projects"}
-      columns={projectColumns}
-    />
+    <div >
+      <AllEntitiesPage name={"projects"} url={"projects"} columns={projectColumns} />
+    </div>
   );
 }

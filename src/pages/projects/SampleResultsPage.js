@@ -56,24 +56,25 @@ export default function SampleResultsPage() {
     }
 
     return (
+      <div>
         <div>
-            <div>
-                <h2>Project Number: {project.id_project}</h2>
-                <div className="w-24" />
-                <h2>Project Name: {project.project_name}</h2>
-                <div className="mx-auto" />
-            </div>
-            <div className="mt-12 bg-red-300">
-                <Formik
-                    initialValues={initialSamples}
-                    onSubmit={async (values) => {
-                        onUpdate(values);
-                    }}
-                    enableReinitialize={true}
-                >
-                    <EditSampleTable samples={samples} initialSamples={initialSamples} />
-                </Formik>
-            </div>
+          <h2 className="text-2xl">{project.project_name}</h2>
+          <div className="h-8" />
+          <h2 className="text-xl">Project number: {project.id_project}</h2>
+
+          <div className="mx-auto" />
         </div>
+        <div className="mt-12 bg-red-300">
+          <Formik
+            initialValues={initialSamples}
+            onSubmit={async (values) => {
+              onUpdate(values);
+            }}
+            enableReinitialize={true}
+          >
+            <EditSampleTable samples={samples} initialSamples={initialSamples} />
+          </Formik>
+        </div>
+      </div>
     );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 
-export default function EditSampleLine({ sample, id }) {
+export default function EditSampleLine({ sample, id, }) {
 
     return (
         <>
@@ -13,19 +13,34 @@ export default function EditSampleLine({ sample, id }) {
                     <Field type="text" name={`sample_label[${id}]`} />
                 </td>
                 <td>
-                    <Field type="text" name={`date_collected[${id}]`} />
+                    <Field
+                        type="text"
+                        name={`date_collected[${id}]`}
+                    />
                 </td>
                 <td>
-                    <Field type="text" name={`sample_medium[${id}]`} />
+                    <Field
+                        type="text"
+                        name={`sample_medium[${id}]`}
+                    />
                 </td>
                 <td>
-                    <Field type="text" name={`sample_quantity[${id}]`} />
+                    <Field
+                        type="text"
+                        name={`sample_quantity[${id}]`}
+                    />
                 </td>
                 <td>
-                    <Field type="text" name={`sample_quantity_unit[${id}]`} />
+                    <Field
+                        type="text"
+                        name={`sample_quantity_unit[${id}]`}
+                    />
                 </td>
                 <td>
-                    <Field type="text" name={`sample_notes[${id}]`} />
+                    <Field
+                        type="text"
+                        name={`sample_notes[${id}]`}
+                    />
                 </td>
             </tr>
         </>

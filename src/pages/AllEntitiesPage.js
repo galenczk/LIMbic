@@ -24,20 +24,20 @@ export default function AllEntitiesPage({ name, url, columns }) {
 
   return (
     <>
-      <div>
-        <div className="flex justify-between">
-          <h3 className="text-2xl p-4">{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
+      <div id="page">
+        <div className="flex justify-between p-4">
+          <h3 className="text-2xl">{name.charAt(0).toUpperCase() + name.slice(1)}</h3>
           <button
             onClick={() => {
               navigate(`/${url}/add`);
             }}
-            className="btn my-auto mr-4"
+            className="btn my-auto"
           >
             Open New {name.slice(0, -1)}
           </button>
         </div>
 
-        <div className="mt-12">
+        <div className="p-4">
           {entities.length ? (
             <EntityTable entities={entities} columns={columns} onView={onView} />
           ) : (

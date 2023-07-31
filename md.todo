@@ -1,6 +1,28 @@
 
 LIMbic -- Laboratory Information Management
 
+
+Sprint to Get Done:
+    Get Project workflow right:
+        ✔ Display client name in forms (sql call needs to grab from different table.) @done(23-07-31 13:55)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Tomorrow's work:
 
     ☐ Go through each entity at a time and style their pages 
@@ -59,3 +81,5 @@ Nice-to-haves:
 
 Bugs:
     ☐ Clients are able to add with blank form, other entities too?
+
+    ☐ Project should be able to change number of samples.

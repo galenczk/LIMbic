@@ -25,22 +25,25 @@
   .btn{
     @apply inline-block rounded bg-fire px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white;
   }
+  .btn-small{
+    @apply rounded bg-blue-600 px-1 text-xs uppercase leading-normal text-white;
+  }
 
   /* Style a table */
   table {
     @apply w-full;
   }
   th {
-    @apply bg-gray-200;
+    @apply bg-myGrey2;
   }
   th, td {
-    @apply border border-gray-400;
+    @apply border border-zinc-400 text-left p-2;
   }
-  th, td {
-    @apply p-2;
+  td{
+    @apply bg-white;
   }
-  th, td {
-    @apply text-left;
+  #page{
+    @apply bg-myBlueGrey ;
   }
 
   /* Style a form */

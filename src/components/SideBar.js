@@ -46,16 +46,24 @@ export default function SideBar({ children }) {
               Trash
             </NavLink>
           </nav>
-          <main className=" min-h-screen w-full flex flex-col flex-grow">{children}</main>
+          <main className=" min-h-screen w-full flex flex-col flex-grow" id="page">
+            {children}
+          </main>
         </div>
       ) : (
-        <div className="flex flex-col bg-red-400">
+        <div className="flex flex-col h-[92vh]" id="page">
           <main className="">{children}</main>
         </div>
       )}
 
       <div>
-        <footer className="flex justify-center bg-myGrey2 p-0.5">
+        <footer
+          className={`${
+            location.pathname !== "/"
+              ? `flex justify-center bg-zinc-200 p-0.5`
+              : `flex justify-center bg-zinc-200 p-0.5 fixed bottom-0 w-full`
+          }`}
+        >
           <p>Galen Ciszek</p>
           <p> &copy; 2023</p>
         </footer>

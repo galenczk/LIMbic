@@ -12,6 +12,7 @@ export default function ProjectDetailsPage() {
 
   const [project, setProject] = useState([]);
   const [samples, setSamples] = useState([]);
+  const [expanded, setExpanded] = useState(false);
 
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
@@ -61,20 +62,14 @@ export default function ProjectDetailsPage() {
   }
 
   return (
-    <div className="flex flex-col m-4 h-full">
-      <div>
-        <div className="flex ">
-          <div>
+    <div className="flex flex-col flex-grow p-4" id="page">
+      <div className="">
+        <div className="flex">
+          <div className="mr-auto">
             <p className="text-2xl">{project.project_name}</p>
-            <div className="mx-auto" />
-            <p className="text-xl mt-2">[client]</p>
           </div>
-          <div></div>
-
-          <div className="mx-auto" />
-
           <button
-            className="btn my-auto"
+            className="btn my-auto "
             onClick={() => {
               navigate("/projects");
             }}
@@ -82,31 +77,47 @@ export default function ProjectDetailsPage() {
             Back
           </button>
         </div>
-        <div className="flex mt-6">
-          <h2>{project.project_type}</h2>
-          <div className="w-24" />
-          <h2 className="">{project.num_samples + " samples"}</h2>
-          <div className="w-24" />
-          <h2>{project.turn_around_time}</h2>
+        <div className="flex pt-8">
+          <table>
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Type</th>
+                <th>Samples</th>
+                <th>TAT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{project.id_client}</td>
+                <td>{project.project_type}</td>
+                <td>{project.num_samples}</td>
+                <td>{project.turn_around_time}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div id="samples table" className="mt-8 flex flex-col gap-4">
-        <div className="flex m-2">
-          <h2>Samples</h2>
+      <div id="table" className="flex flex-col mt-8 gap-4">
+        <div className="flex mt-8">
+          <h2 className="text-lg">Samples</h2>
           <div className="mx-auto" />
-          <button className="btn btn-blue" onClick={() => navigate(`/projects/edit-samples/${project.id_project}`)}>
-            Edit Sample Details
-          </button>
+
           <button className="btn btn-blue" onClick={() => navigate(`/projects/edit-results/${project.id_project}`)}>
-            Add Sample Results
+            Add Analytical Results
           </button>
         </div>
 
-        <SampleTable samples={samples} />
-        <button className="btn btn-blue mx-auto ml-2">Expand (does nothing yet)</button>
+        <SampleTable samples={samples} expanded={expanded} />
+        <div className="flex justify-between">
+          {(project.num_samples > 8) && <button className="btn mx-auto ml-0" onClick={() => {setExpanded(!expanded)}}>{expanded ? "Collapse" : "Expand"}</button>}
+          <button className="btn" onClick={() => navigate(`/projects/edit-samples/${project.id_project}`)}>
+            Edit Sample Information
+          </button>
+        </div>
       </div>
-      <div id="bottom buttons" className="flex mt-auto">
+      <div className="flex mt-auto" id="myItem">
         <button
           onClick={() => {
             onComplete(project.id_project);
@@ -125,7 +136,7 @@ export default function ProjectDetailsPage() {
         >
           Edit Project Details
         </button>
-        <div className="w-8" />
+        <div className="w-12" />
         <button
           className="btn btn-blue"
           onClick={() => {
