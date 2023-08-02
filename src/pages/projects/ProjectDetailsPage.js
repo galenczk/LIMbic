@@ -5,7 +5,8 @@ import axios from "axios";
 
 import SampleTable from "../../components/samples/SampleTable";
 
-import ConfirmationModal from "../../components/ConfirmationModal";
+import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
+import CompleteConfirmationModal from "../../components/CompleteConfirmationModal";
 
 export default function ProjectDetailsPage() {
     const { id_project } = useParams();
@@ -14,19 +15,35 @@ export default function ProjectDetailsPage() {
     const [samples, setSamples] = useState([]);
     const [expanded, setExpanded] = useState(false);
 
-    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [showCompleteConfirmation, setShowCompleteConfirmation] = useState(false);
 
+    // Handle delete confirmation modal
     const handleDelete = () => {
-        setShowConfirmationModal(true);
+        setShowDeleteConfirmation(true);
     };
 
     const handleConfirmDeletion = () => {
-        setShowConfirmationModal(false);
+        setShowDeleteConfirmation(false);
         onDelete(id_project);
     };
 
     const handleCancelDeletion = () => {
-        setShowConfirmationModal(false);
+        setShowDeleteConfirmation(false);
+    };
+
+    // Handle complete confirmation modal
+    const handleComplete = () => {
+        setShowCompleteConfirmation(true);
+    };
+
+    const handleConfirmComplete = () => {
+        setShowCompleteConfirmation(false);
+        onComplete(id_project);
+    };
+
+    const handleCancelComplete = () => {
+        setShowCompleteConfirmation(false);
     };
 
     async function loadProject(id_project) {
@@ -122,7 +139,7 @@ export default function ProjectDetailsPage() {
                                 `/projects/edit-results/${project.id_project}`
                             )
                         }>
-                        Add Analytical Results
+                        Add/Edit Analytical Results
                     </button>
                 </div>
 
@@ -151,7 +168,7 @@ export default function ProjectDetailsPage() {
             <div className="flex mt-auto" id="myItem">
                 <button
                     onClick={() => {
-                        onComplete(project.id_project);
+                        handleComplete();
                     }}
                     className="btn btn-blue">
                     Complete Project
@@ -174,11 +191,18 @@ export default function ProjectDetailsPage() {
                     Delete Project
                 </button>
 
-                {showConfirmationModal && (
-                    <ConfirmationModal
+                {showDeleteConfirmation && (
+                    <DeleteConfirmationModal
                         message="Are you sure you want to delete this project?"
                         confirmAction={handleConfirmDeletion}
                         cancelAction={handleCancelDeletion}
+                    />
+                )}
+                {showCompleteConfirmation && (
+                    <CompleteConfirmationModal
+                        message="Set this project as completed?"
+                        confirmAction={handleComplete}
+                        cancelAction={handleCancelComplete}
                     />
                 )}
             </div>

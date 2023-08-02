@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
-import ConfirmationModal from "../../components/ConfirmationModal";
+import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
 
 
 export default function EditTechPage() {
@@ -136,7 +136,7 @@ export default function EditTechPage() {
               </button>
 
               {showConfirmationModal && (
-                <ConfirmationModal
+                <DeleteConfirmationModal
                   message="Are you sure you want to delete this technician?"
                   confirmAction={handleConfirmDeletion}
                   cancelAction={handleCancelDeletion}

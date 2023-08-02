@@ -58,10 +58,9 @@ export default function EditSampleTable({
         }
     }
 
-    //useEffect(() => {
-    //}, [disabledFields])
+    useEffect(() => {
+    }, [disabledFields])
 
-    console.log(disabledFields)
 
     return (
         <div className="p-4">

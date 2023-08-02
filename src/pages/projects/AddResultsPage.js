@@ -4,9 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Formik, Form, FieldArray, Field } from "formik";
 
-import EditSampleTable from "../../components/samples/editSamples/EditSampleTable";
+import EditSampleTable from "../../components/samples/editResults/EditResultTable";
 
-export default function EditSamplesPage() {
+export default function AddResultsPage() {
     const { id_project } = useParams();
 
     const [project, setProject] = useState([]);
@@ -39,44 +39,40 @@ export default function EditSamplesPage() {
     const initialSamples = {
         id_project: id_project,
         id_sample: [],
-        date_collected: [],
-        sample_label: [],
-        sample_medium: [],
-        sample_quantity: [],
-        sample_quantity_unit: [],
+        sample_result: [],
+        sample_result_unit: [],
         sample_notes: [],
     };
 
     // This needs to be changed to set values at specific indexes in the arrays above
     samples.map((sample, index) => {
         initialSamples.id_sample.push(sample.id_sample);
-        initialSamples.date_collected.push(sample.date_collected);
-        initialSamples.sample_label.push(sample.sample_label);
-        initialSamples.sample_medium.push(sample.sample_medium);
-        initialSamples.sample_quantity.push(sample.sample_quantity);
-        initialSamples.sample_quantity_unit.push(sample.sample_quantity_unit);
+        initialSamples.sample_result.push(sample.sample_result);
+        initialSamples.sample_result_unit.push(sample.sample_result_unit);
         initialSamples.sample_notes.push(sample.sample_notes);
     });
 
     async function onUpdate(values) {
         const response = await axios.post(
-            "http://localhost:3030/samples/update",
+            "http://localhost:3030/samples/results/update",
             values
         );
-        if (response.status === 200) {
-            navigate(`/projects/${initialSamples.id_project}`);
-        }
+        //if (response.status === 201) {
+        //    navigate("/clients");
+        //}
     }
 
     return (
         <div id="page">
             <div className="flex flex-col p-4">
-                <h2 className="text-2xl mb-4">Edit Sample Information</h2>
+                <h2 className="text-2xl mb-4">Edit Result Information</h2>
                 <div className="flex justify-between">
                     <div>
-                        <h2 className="text-lg">{project.project_name}</h2>
+                        <h2 className="text-lg mb-4">
+                            {project.project_name}
+                        </h2>
                         <h2 className="text-lg">
-                            Project: {project.id_project}
+                            Project number: {project.id_project}
                         </h2>
                     </div>
 
@@ -96,13 +92,11 @@ export default function EditSamplesPage() {
                         onUpdate(values);
                     }}
                     enableReinitialize={true}>
-                    {samples && (
-                        <EditSampleTable
-                            samples={samples}
-                            initialSamples={initialSamples}
-                            setSamples={setSamples}
-                        />
-                    )}
+                    <EditSampleTable
+                        samples={samples}
+                        initialSamples={initialSamples}
+                        setSamples={setSamples}
+                    />
                 </Formik>
             </div>
         </div>

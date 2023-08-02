@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 
-export default function EditResultLine({ sample, id }) {
+export default function EditResultLine({ sample, id, disabledFields }) {
 
     return (
         <>
@@ -13,13 +13,25 @@ export default function EditResultLine({ sample, id }) {
                 <td>{sample.date_collected}</td>
                 <td>{sample.sample_medium}</td>
                 <td>
-                    <Field type="text" name={`sample_result[${id}]`} />
+                    <Field
+                        type="text"
+                        name={`sample_result[${id}]`}
+                        disabled={disabledFields[0]}
+                    />
                 </td>
                 <td>
-                    <Field type="text" name={`sample_result_unit[${id}]`} />
+                    <Field
+                        type="text"
+                        name={`sample_result_unit[${id}]`}
+                        disabled={disabledFields[1]}
+                    />
                 </td>
                 <td>
-                    <Field type="text" name={`sample_notes[${id}]`} />
+                    <Field
+                        type="text"
+                        name={`sample_notes[${id}]`}
+                        disabled={disabledFields[2]}
+                    />
                 </td>
             </tr>
         </>

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ConfirmationModal({ message, confirmAction, cancelAction }) {
+export default function DeleteConfirmationModal({ message, confirmAction, cancelAction }) {
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
       <div className="bg-white rounded-lg shadow-lg p-8">

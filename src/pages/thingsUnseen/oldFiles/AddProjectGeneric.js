@@ -1,5 +1,5 @@
 import React from 'react'
-import AddEntitiesPage from '../AddEntitiesPage'
+import AddEntitiesPage from '../../AddEntitiesPage'
 
 export default function AddProjectGeneric() {
   return (

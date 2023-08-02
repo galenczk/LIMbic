@@ -5,7 +5,7 @@ import axios from "axios";
 
 import ProjectTableClientPage from "../../components/projects/clientPage/ProjectTableClientPage";
 
-import ConfirmationModal from "../../components/ConfirmationModal";
+import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
 
 export default function ClientDetailsPage() {
   const { id_client } = useParams();
@@ -120,7 +120,7 @@ export default function ClientDetailsPage() {
         </button>
 
         {showConfirmationModal && (
-          <ConfirmationModal
+          <DeleteConfirmationModal
             message="Are you sure you want to delete this client?"
             confirmAction={handleConfirmDeletion}
             cancelAction={handleCancelDeletion}
