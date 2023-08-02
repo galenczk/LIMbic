@@ -9,8 +9,9 @@ Pages to use as templates:
 Sprint to Get Done:
     Get Project workflow right:
         ✔ Display client name in forms (sql call needs to grab from different table.) @done(23-07-31 13:55)
-        ☐ Samples on Project Page need to display Label
-
+        ✔ Samples on Project Page need to display Label @done(23-08-01 19:13)
+        ☐ ProjectDetailsPage sample table needs borders on header
+        ☐ Pages for editing entities look shitty.
 
 
 

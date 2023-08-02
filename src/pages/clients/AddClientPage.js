@@ -15,9 +15,10 @@ export default function AddClientPage() {
 
     return (
         <>
-            <h1 className="text-3xl p-6 text-center">Add a Client</h1>
+        <div className="flex flex-col w-1/2 mx-auto my-6">
+            <h1 className="text-3xl p-6">New Client</h1>
 
-            <div className="p-8 bg-gray-300 mx-auto w-1/2">
+            <div className="p-8 bg-gray-300 mx-auto w-full">
                 <Formik
                     initialValues={{
                         client_name: "",
@@ -50,14 +51,16 @@ export default function AddClientPage() {
                         <label for="client_notes">Client Notes</label>
                         <Field type="text" id="client_notes" name="client_notes"></Field>
 
-                        <div className="mt-4">
+                        <div className="mt-4 text-end">
                             <button className="btn btn-green" type="submit">
-                                Add
+                                Add Client
                             </button>
                         </div>
                     </Form>
                 </Formik>
             </div>
+        </div>
+            
         </>
     );
 }

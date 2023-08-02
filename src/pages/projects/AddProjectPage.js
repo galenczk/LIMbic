@@ -120,7 +120,7 @@ export default function AddProjectPage() {
                                 <option value="5 day">5 Day</option>
                                 <option value="special">Special</option>
                             </Field>
-                            <div className="mt-4">
+                            <div className="mt-4 text-end">
                                 <button
                                     className="btn btn-green"
                                     type="submit">
