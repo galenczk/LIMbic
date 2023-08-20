@@ -18,10 +18,6 @@ import EditSamplesPage from "./pages/projects/EditSamplesPage";
 import AddResultsPage from "./pages/projects/AddResultsPage";
 import CompletedProjectsPage from "./pages/projects/completed/CompletedProjectsPage";
 
-import AllTechsPage from "./pages/techs/AllTechsPage";
-import AddTechPage from "./pages/techs/AddTechPage";
-import EditTechPage from "./pages/techs/EditTechPage";
-
 import TrashPage from "./pages/thingsUnseen/TrashPage";
 
 // Components
@@ -49,10 +45,6 @@ export default function App() {
             <Route path="/projects/edit-results/:id_project" exact element={<AddResultsPage />} />
 
             <Route path="/completed" exact element={<CompletedProjectsPage />} />
-
-            <Route path="/techs" exact element={<AllTechsPage />} />
-            <Route path="/techs/add" exact element={<AddTechPage />} />
-            <Route path="/techs/edit/:id_tech" exact element={<EditTechPage />} />
 
             <Route path="/trash" exact element={<TrashPage />} />
           </Routes>

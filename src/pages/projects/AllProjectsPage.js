@@ -10,10 +10,6 @@ const projectColumns = [
     accessor: "id_client",
   },
   {
-    Header: "Technician",
-    accessor: "id_tech",
-  },
-  {
     Header: "Client's Project No.",
     accessor: "project_num_client",
   },
@@ -37,6 +33,7 @@ const projectColumns = [
     Header: "Type",
     accessor: "project_type",
   },
+  {},
 ];
 export default function AllProjectsPage() {
   return (

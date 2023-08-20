@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
-import DeleteConfirmationModal from "../../components/DeleteConfirmationModal";
+import DeleteConfirmationModal from "../../../../components/DeleteConfirmationModal";
 
 
 export default function EditTechPage() {

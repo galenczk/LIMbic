@@ -27,12 +27,6 @@ export default function SideBar({ children }) {
             </NavLink>
             <div className="mt-auto" />
             <NavLink
-              to="/techs"
-              className={({ isActive }) => (isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4")}
-            >
-              Technicians
-            </NavLink>
-            <NavLink
               to="/completed"
               className={({ isActive }) => (isActive ? "bg-stone-500 text-white text-center p-4" : "text-center p-4")}
             >

@@ -34,16 +34,13 @@
 
   /* Style a table */
   table {
-    @apply w-full;
+    @apply w-full border-collapse;
   }
   th {
-    @apply bg-myGrey2;
-  }
-  th, td {
-    @apply border border-zinc-400 text-left p-2;
+    @apply bg-slate-300 border border-zinc-600 text-left p-2;
   }
   td{
-    @apply bg-white;
+    @apply bg-white border border-zinc-600 text-left p-2;
   }
   #page{
     @apply bg-myBlueGrey ;

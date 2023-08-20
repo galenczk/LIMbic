@@ -14,6 +14,8 @@ export default function ProjectDetailsPage() {
     const [project, setProject] = useState([]);
     const [samples, setSamples] = useState([]);
     const [expanded, setExpanded] = useState(false);
+    const [clients, setClients] = useState([])
+    const [thisClient, setThisClient] = useState('')
 
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [showCompleteConfirmation, setShowCompleteConfirmation] = useState(false);
@@ -61,8 +63,6 @@ export default function ProjectDetailsPage() {
         const samples = response.data;
         setSamples(samples);
     }
-
-
 
     useEffect(() => {
         loadProject(id_project);
@@ -117,7 +117,7 @@ export default function ProjectDetailsPage() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{project.id_client}</td>
+                                <td>{thisClient}</td>
                                 <td>{project.project_type}</td>
                                 <td>{project.num_samples}</td>
                                 <td>{project.turn_around_time}</td>
