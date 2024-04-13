@@ -1,0 +1,6 @@
+firestore:
+    ☐ Secure firestore after build
+
+next:
+    ☐ Look into making loading pages
+    
