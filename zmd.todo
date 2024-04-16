@@ -4,3 +4,29 @@ firestore:
 next:
     ☐ Look into making loading pages
     
+
+
+
+
+    Project
+Client
+Client ID
+Date Recieved
+Type (Soil, Water, Air, Bulk)
+Turn Around Time (1 day, 2 day, 3 day, 5 day)
+Revenue?
+
+    Client
+Name
+Email
+Phone
+Total Revenue?
+Number of Projects?
+
+    Sample
+Project ID
+Medium
+Date Collected
+Quantity
+Result
+
