@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-LIMbic is a laboratory information management system that allows a hypothetical analytical laboratory to manage their project database. This project combines my knowledge of full-stack web application development with experience from my previous career as an environmnetal consultant. 
+LIMbic is a laboratory information management system that allows a hypothetical analytical laboratory to manage their project database. This project combines my knowledge of full-stack web application development with experience from my previous career as an environmental consultant. 
 
 LIMbic allows an analytical laboratory to manage critical information in their project pipeline. A laboratory may be involved in the analysis of soil, air, water, or bulk material samples. A given analytical project may involve over a hundred samples, and each may have several analytical results associated with it. This project information must be tracked in relation to a client and client's project. 
 
