@@ -26,4 +26,4 @@ The challenge of capturing and presenting project information in a streamlined m
 
 ## Credits
 
-    This project was developed independently by myself, Galen Ciszek in 2023.
+    This project was developed independently by myself, Galen Ciszek in 2024 and 2025.
