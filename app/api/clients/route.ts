@@ -45,9 +45,9 @@ export async function POST(request: Request) {
     try {
         const docRef = await addDoc(collection(db, 'clients'), {
             name: data.name,
-            phone: data.client,
-            email: data.type,
-            address: data.numberSamples,
+            phone: data.phone,
+            email: data.email,
+            address: data.address,
             city: data.city,
             state: data.state,
             zip: data.zip,
