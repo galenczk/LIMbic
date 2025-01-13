@@ -1,1 +1,16 @@
 ☐ Create an incrementing project number system
+    Get the last project number +1 when rendering the createProject page and put this in the project number field.
+
+Pages to create:
+    ☐ Add client 
+    ☐ Edit client
+    ☐ Edit project
+    ☐ Data entry (Analysis)
+    ☐ Deleted entities
+    ☐ Price sheet (for admins)
+
+Auth:
+    ☐ Create different classes of user and give them priviledges based on this
+        Analyst, Admin, Client??
+
+        
