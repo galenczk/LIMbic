@@ -1,15 +1,15 @@
-☐ Create an incrementing project number system
-    Get the last project number +1 when rendering the createProject page and put this in the project number field.
-☐ Implement logic for handling dates and project value
+☐ Implement logic for handling dates and project value.
 
 
 Pages to create:
-    ☐ Add client 
+    ✔ Add client @done(25-01-13 11:07)
     ☐ Edit client
+        Nav from Clients page through link in clientName. Pass client data through to editClient page function. 
     ☐ Edit project
     ☐ Data entry (Analysis)
     ☐ Deleted entities
     ☐ Price sheet (for admins)
+    ☐ View client's project list (link to this will be the client name on Client page)
 
 Auth:
     ☐ Create different classes of user and give them priviledges based on this

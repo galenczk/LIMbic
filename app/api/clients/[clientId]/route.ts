@@ -16,38 +16,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// GET all clients
-export async function GET(request: Request) {
-    try {
-        const querySnapshot = await getDocs(collection(db, 'clients'));
-
-        const clients = querySnapshot.docs.map((client: any) => ({
-            clientId: client.data().clientId,
-            name: client.data().name,
-            phone: client.data().phone,
-            email: client.data().email,
-            address: client.data().address,
-            city: client.data().city,
-            state: client.data().state,
-            zip: client.data().zip,
-        }));
-
-        return NextResponse.json(clients);
-    } catch (error) {
-        console.error('Error fetching projects:', error);
-        return NextResponse.json({ error: 'Failed to fetch projects' }, { status: 500 });
-    }
-}
-
-// CREATE client
-export async function POST(request: Request) {
+// UPDATE a client
+export async function PUT(request: Request) {
     const data = await request.json();
-    const newDocRef = doc(collection(db, 'clients'));
-    const newDocId = newDocRef.id;
 
     try {
-        const docRef = await setDoc(doc(db, 'clients', newDocId), {
-            clientId: newDocId,
+        const querySnapshot = await getDocs(query(collection(db, 'clients'), where('clientId', '==', data.clientId)));
+        if (querySnapshot.empty) {
+            console.error('No client found with the provided clientId');
+            return NextResponse.json({ error: 'Client not found' }, { status: 404 });
+        }
+
+        const clientDoc = querySnapshot.docs[0];
+        
+
+        await setDoc(doc(db, 'clients', clientId), {
+            clientNumber: data.clientNumber,
             name: data.name,
             phone: data.phone,
             email: data.email,
@@ -61,5 +45,3 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Failed to create client' }, { status: 500 });
     }
 }
-
-

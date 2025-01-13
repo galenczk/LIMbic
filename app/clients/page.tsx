@@ -27,13 +27,14 @@ export default async function clientsPage() {
                     <tbody>
                         {clients.map((client: any, key: string) => (
                             <tr key={key}>
-                                <td>{client.name}</td>
+                                <td><Link href={`/clients/${client.clientId}`}>{client.name}</Link></td>
                                 <td>{client.phone}</td>
                                 <td>{client.email}</td>
                                 <td>{client.address}</td>
                                 <td>{client.city}</td>
                                 <td>{client.state}</td>
-                                <td>{client.zip}</td>
+                                <td>{client.clientId}</td>
+                                
                             </tr>
                         ))}
                     </tbody>

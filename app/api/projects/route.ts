@@ -1,7 +1,7 @@
 'use server';
 import { NextResponse } from 'next/server';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
+import { getFirestore, doc, collection, getDocs, addDoc, setDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Look at how to render date when you start adding projects via a form on client
+// GET all projects
 export async function GET(request: Request) {
     try {
         const querySnapshot = await getDocs(collection(db, 'projects'));
@@ -40,23 +40,61 @@ export async function GET(request: Request) {
     }
 }
 
-// Create project
+// CREATE project
 export async function POST(request: Request) {
-    const data = await request.json()
-    console.log(data);
+    const data = await request.json();
+    const newDocRef = doc(collection(db, 'projects'));
+    const newDocId = newDocRef.id;
+    const nextProjectNumber = await getProjectNumber();
 
     try {
         const docRef = await addDoc(collection(db, 'projects'), {
+            projectId: newDocId,
+            number: nextProjectNumber,
             name: data.name,
             client: data.client,
             type: data.type,
             numberSamples: data.numberSamples,
-            tat: data.tat
-        })
+            tat: data.tat,
+        });
     } catch (error) {
         console.error('Error creating project:', error);
         return NextResponse.json({ error: 'Failed to create project' }, { status: 500 });
-    
     }
-    
+}
+
+// Gets next project number
+async function getProjectNumber() {
+    const querySnapshot = await getDocs(collection(db, 'projects'));
+    const currentCount = querySnapshot.size || 0;
+    const newCount = currentCount + 1;
+    return newCount;
+}
+
+// UPDATE project
+export async function PUT(request: Request) {
+    const data = await request.json();
+    console.log(data);
+
+    try {
+        const querySnapshot = await getDocs(query(collection(db, 'clients'), where('clientId.', '==', data.clientId)))
+        if (querySnapshot.empty){
+            console.error('No client found with the provided clientId');
+            return NextResponse.json({error: 'Client not found'}, {status: 404})
+        }    
+        
+    await setDoc(doc(db, 'clients', data.clientId), {
+            name: data.name,
+            phone: data.phone,
+            email: data.email,
+            address: data.address,
+            city: data.city,
+            state: data.state,
+            zip: data.zip,
+        });
+
+    } catch (error) {
+        console.error('Error creating client:', error);
+        return NextResponse.json({ error: 'Failed to create client' }, { status: 500 });
+    }
 }
