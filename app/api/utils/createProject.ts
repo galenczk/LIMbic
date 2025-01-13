@@ -1,6 +1,5 @@
 // takes in createProject formdata and makes POST request to /projects
 'use server'
-import { NextResponse } from 'next/server';
 
 export async function createProject(formData: FormData) {
     //console.log(formData);

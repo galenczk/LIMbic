@@ -6,6 +6,7 @@ export default async function projectsPage() {
     const projects = await response.json();
 
     // Look at how to render date when you start adding projects via a form on client
+    // Need to add openedDate, dueDate, and value. Should go opened, tat, due, value
     return (
         <div>
             <Link href={'/'} className='bg-blue-400'>
@@ -21,10 +22,7 @@ export default async function projectsPage() {
                             <th>Client</th>
                             <th>Type</th>
                             <th>No. Samples</th>
-                            <th>Opened</th>
                             <th>TAT</th>
-                            <th>Due</th>
-                            <th>Value</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,14 +33,13 @@ export default async function projectsPage() {
                                 <td>{project.client}</td>
                                 <td>{project.type}</td>
                                 <td>{project.numberSamples}</td>
-                                <td>{project.openedDate.seconds}</td>
                                 <td>{project.tat}</td>
-                                <td>{project.dueDate.seconds}</td>
-                                <td>{project.value}</td>
+                                
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                <Link href={'/projects/create'}>New Project</Link>
             </div>
         </div>
     );

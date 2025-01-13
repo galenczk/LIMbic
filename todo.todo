@@ -1,5 +1,7 @@
 ☐ Create an incrementing project number system
     Get the last project number +1 when rendering the createProject page and put this in the project number field.
+☐ Implement logic for handling dates and project value
+
 
 Pages to create:
     ☐ Add client 
@@ -13,4 +15,14 @@ Auth:
     ☐ Create different classes of user and give them priviledges based on this
         Analyst, Admin, Client??
 
+Testing: 
+    ☐ Create tests in Postman for API routes
+        GET Projects
+        POST Projects
+        UPDATE Projects
+        DELETE Projects
+        GET Clients
+        POST Clients
+        UPDATE Clients
+        DELETE Clients
         
