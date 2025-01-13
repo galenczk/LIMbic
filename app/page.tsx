@@ -15,6 +15,8 @@ export default function Home() {
           <Link href={`/clients/`} className='bg-blue-400'>
               Clients
           </Link>
+
+          
       </div>
   );
 }
