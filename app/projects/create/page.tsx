@@ -1,16 +1,18 @@
 import Link from 'next/link';
+import { createProject } from '../../api/utils/createProject';
 
 export default async function createProjectPage() {
-
     return (
         <div>
-            <form action={createProject}>
-                <input type='text' name='name'/>
-                <input type='text' name='client'/>
-                <input type='text' name='type'/>
-                <input type='text' name='numberSamples'/>
-                <input type='text' name='tat'/> 
-                <button onClick={submit}></button>
+            <form action={createProject} className='text-black'>
+                <input type='text' name='name' defaultValue='Test Project 1234' />
+                <input type='text' name='client' defaultValue='Test Client 1234' />
+                <input type='text' name='type' defaultValue='Soil' />
+                <input type='text' name='numberSamples' defaultValue='1234' />
+                <input type='text' name='tat' defaultValue='12340' />
+                <button type='submit' className='bg-slate-300 '>
+                    Create Project
+                </button>
             </form>
         </div>
     );

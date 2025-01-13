@@ -4,7 +4,6 @@ export default async function projectsPage() {
     let response = await fetch('http://localhost:3000/api/projects');
 
     const projects = await response.json();
-    console.log(projects);
 
     // Look at how to render date when you start adding projects via a form on client
     return (
@@ -18,7 +17,6 @@ export default async function projectsPage() {
                 <table>
                     <thead>
                         <tr>
-                            <th>No.</th>
                             <th>Name</th>
                             <th>Client</th>
                             <th>Type</th>
