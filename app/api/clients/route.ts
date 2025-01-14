@@ -16,28 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// GET all clients
-export async function GET(request: Request) {
-    try {
-        const querySnapshot = await getDocs(collection(db, 'clients'));
 
-        const clients = querySnapshot.docs.map((client: any) => ({
-            clientId: client.data().clientId,
-            name: client.data().name,
-            phone: client.data().phone,
-            email: client.data().email,
-            address: client.data().address,
-            city: client.data().city,
-            state: client.data().state,
-            zip: client.data().zip,
-        }));
-
-        return NextResponse.json(clients);
-    } catch (error) {
-        console.error('Error fetching projects:', error);
-        return NextResponse.json({ error: 'Failed to fetch projects' }, { status: 500 });
-    }
-}
 
 // CREATE client
 export async function POST(request: Request) {

@@ -3,8 +3,7 @@
 
 Pages to create:
     ✔ Add client @done(25-01-13 11:07)
-    ☐ Edit client
-        Nav from Clients page through link in clientName. Pass client data through to editClient page function. 
+    ✔ Edit client @done(25-01-13 17:59)
     ☐ Edit project
     ☐ Data entry (Analysis)
     ☐ Deleted entities
