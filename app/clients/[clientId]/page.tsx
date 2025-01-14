@@ -8,7 +8,7 @@ interface ClientPageProps {
 
 export default async function clientInfoPage({ params }: ClientPageProps) {
     // Get data for single Client based on clientId
-    const { clientId } = params;
+    const { clientId } = await params;
     const docRef = doc(db, 'clients', clientId);
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) {

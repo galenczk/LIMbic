@@ -3,6 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../api/utils/db';
 
 export default async function projectsPage() {
+    // Get all Projects from firestore.
     const querySnapshot = await getDocs(collection(db, 'projects'));
 
     const projects = querySnapshot.docs.map((project: any) => ({
@@ -22,7 +23,6 @@ export default async function projectsPage() {
     // Need to add openedDate, dueDate, and value. Should go opened, tat, due, value
     return (
         <div>
-            8
             <Link href={'/'} className='bg-blue-400'>
                 Home
             </Link>
@@ -31,6 +31,7 @@ export default async function projectsPage() {
                 <table>
                     <thead>
                         <tr>
+                            <th>Number</th>
                             <th>Name</th>
                             <th>Client</th>
                             <th>Type</th>
@@ -42,7 +43,9 @@ export default async function projectsPage() {
                         {projects.map((project: any, key: number) => (
                             <tr key={key}>
                                 <td>{project.number}</td>
-                                <td>{project.name}</td>
+                                <td>
+                                    <Link href={`/projects/${project.projectId}`}>{project.name}</Link>
+                                </td>
                                 <td>{project.client}</td>
                                 <td>{project.type}</td>
                                 <td>{project.numberSamples}</td>

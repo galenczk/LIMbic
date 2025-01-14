@@ -4,7 +4,7 @@
 Pages to create:
     ✔ Add client @done(25-01-13 11:07)
     ✔ Edit client @done(25-01-13 17:59)
-    ☐ Edit project
+    ✔ Edit project @done(25-01-13 19:57)
     ☐ Data entry (Analysis)
     ☐ Deleted entities
     ☐ Price sheet (for admins)
@@ -24,4 +24,7 @@ Testing:
         POST Clients
         UPDATE Clients
         DELETE Clients
+
+Typescript:
+    ☐ Make sure each page has an interface, as needed
         

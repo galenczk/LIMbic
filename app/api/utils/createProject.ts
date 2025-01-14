@@ -1,30 +1,46 @@
 // takes in createProject formdata and makes POST request to /projects
-'use server'
+'use server';
+import { doc, collection, setDoc, getDocs } from 'firebase/firestore';
+import { db } from '../../api/utils/db';
 
 export async function createProject(formData: FormData) {
-    //console.log(formData);
-    
+    const newProjectRef = doc(collection(db, 'projects'));
+    const newProjectId = newProjectRef.id;
+    const nextProjectNumber = await getProjectNumber();
+
     try {
-        const response = await fetch('http://localhost:3000/api/projects', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: formData.get('name'),
-                client: formData.get('client'),
-                type: formData.get('type'),
-                numberSamples: formData.get('numberSamples'),
-                tat: formData.get('tat'),
-            }),
+        await setDoc(doc(db, 'projects', newProjectId), {
+            projectId: newProjectId,
+            number: nextProjectNumber,
+            name: formData.get('name'),
+            client: formData.get('client'),
+            type: formData.get('type'),
+            numberSamples: formData.get('numberSamples'),
+            tat: formData.get('tat'),
         });
+        const numberSamples = Number(formData.get('numberSamples'));
+        const projectName = formData.get('name');
 
-        if (!response.ok) {
-            return {'Error': 'No response from server.'}
+        // Create samples associated with project.
+        for (let index = 0; index < numberSamples; index++) {
+            const newSampleRef = doc(collection(db, 'samples'));
+            const newSampleId = newSampleRef.id;
+            await setDoc(doc(db, 'samples', newSampleId), {
+                projectId: newProjectId,
+                sampleId: newSampleId,
+                sampleNumber: index + 1,
+                name: projectName,
+            });
         }
-
-        const data = await response.json();
-    } catch (error: any) {
-        return {'Error': 'No response from server.'}
+    } catch (error) {
+        return { Error: 'No response from server.' };
     }
+}
+
+// Gets next incremental project number
+async function getProjectNumber() {
+    const querySnapshot = await getDocs(collection(db, 'projects'));
+    const currentCount = querySnapshot.size || 0;
+    const newCount = currentCount + 1;
+    return newCount;
 }

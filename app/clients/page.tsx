@@ -3,6 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../api/utils/db';
 
 export default async function clientsPage() {
+    // Get all Clients from firestore.
     const querySnapshot = await getDocs(collection(db, 'clients'));
 
     const clients = querySnapshot.docs.map((client: any) => ({

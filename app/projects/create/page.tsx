@@ -8,8 +8,8 @@ export default async function createProjectPage() {
                 <input type='text' name='name' defaultValue='Test Project 1234' />
                 <input type='text' name='client' defaultValue='Test Client 1234' />
                 <input type='text' name='type' defaultValue='Soil' />
-                <input type='text' name='numberSamples' defaultValue='1234' />
-                <input type='text' name='tat' defaultValue='12340' />
+                <input type='number' name='numberSamples' defaultValue='3' />
+                <input type='number' name='tat' defaultValue='12340' />
                 <button type='submit' className='bg-slate-300 '>
                     Create Project
                 </button>
