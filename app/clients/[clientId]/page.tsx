@@ -1,40 +1,33 @@
 import Link from 'next/link';
-import { NextResponse } from 'next/server';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, collection, getDoc, addDoc, setDoc } from 'firebase/firestore';
-
-const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
-    measurementId: process.env.FIREBASE_MEASUREMENT_ID,
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../api/utils/db';
 
 interface ClientPageProps {
     params: { clientId: string };
 }
 
 export default async function clientInfoPage({ params }: ClientPageProps) {
+    // Get data for single Client based on clientId
     const { clientId } = params;
-
     const docRef = doc(db, 'clients', clientId);
     const docSnap = await getDoc(docRef);
-
     if (!docSnap.exists()) {
         return <div>Client not found</div>;
     }
-
     const client = docSnap.data();
 
     return (
         <div>
-            <h1>{client.name}</h1>
+            <div>
+                <h1>{client.name}</h1>
+                <h1>{client.phone}</h1>
+                <h1>{client.email}</h1>
+                <h1>{client.address}</h1>
+                <h1>{client.city}</h1>
+                <h1>{client.state}</h1>
+                <h1>{client.zip}</h1>
+            </div>
+            <Link href={`/clients/update/${clientId}`}>Edit Client</Link>
         </div>
     );
 }

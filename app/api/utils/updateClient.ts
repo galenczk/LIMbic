@@ -1,32 +1,22 @@
 // takes in createClient formdata and makes POST request to /projects
 'use server';
+import { db } from '../utils/db';
+import { setDoc, doc } from 'firebase/firestore';
 
 export async function updateClient(formData: FormData) {
-    //console.log(formData);
-
+    const clientId = formData.get('clientId');
     try {
-        const response = await fetch('http://localhost:3000/api/clients', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: formData.get('name'),
-                phone: formData.get('phone'),
-                email: formData.get('email'),
-                address: formData.get('address'),
-                city: formData.get('city'),
-                state: formData.get('state'),
-                zip: formData.get('zip'),
-            }),
+        await setDoc(doc(db, 'clients', clientId), {
+            name: formData.get('name'),
+            phone: formData.get('phone'),
+            email: formData.get('email'),
+            address: formData.get('address'),
+            city: formData.get('city'),
+            state: formData.get('state'),
+            zip: formData.get('zip'),
+            clientId: clientId,
         });
-
-        if (!response.ok) {
-            return { Error: 'No response from server.' };
-        }
-
-        const data = await response.json();
-    } catch (error: any) {
-        return { Error: 'No response from server.' };
+    } catch (error) {
+        console.error(`Error updating client ${clientId}`, error);
     }
 }
