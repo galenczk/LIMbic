@@ -1,4 +1,3 @@
-// takes in createClient formdata and makes POST request to /projects
 'use server';
 import { db } from '../utils/db';
 import { doc, setDoc } from 'firebase/firestore';

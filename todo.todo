@@ -1,4 +1,7 @@
 ☐ Implement logic for handling dates and project value.
+☐ When a project is deleted, all of its samples should be deleted
+
+
 
 
 Pages to create:
@@ -6,6 +9,7 @@ Pages to create:
     ✔ Edit client @done(25-01-13 17:59)
     ✔ Edit project @done(25-01-13 19:57)
     ☐ Data entry (Analysis)
+        The form needs to send a list of Sample objects and all of their data to be updated on db.
     ☐ Deleted entities
     ☐ Price sheet (for admins)
     ☐ View client's project list (link to this will be the client name on Client page)
@@ -24,7 +28,8 @@ Testing:
         POST Clients
         UPDATE Clients
         DELETE Clients
+    ☐ Look into other ways of testing web pages
 
 Typescript:
-    ☐ Make sure each page has an interface, as needed
+    ☐ Make sure each page has a Typescript interface, as needed
         

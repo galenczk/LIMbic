@@ -27,6 +27,7 @@ export default async function projectInfoPage({ params }: ProjectPageProps) {
                 <h1>{project.tat}</h1>
             </div>
             <Link href={`/projects/update/${projectId}`}>Edit Project Details</Link>
+            <div />
             <Link href={`/projects/dataEntry/${projectId}`}>Enter Analytical Data</Link>
         </div>
     );

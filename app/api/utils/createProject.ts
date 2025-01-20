@@ -27,9 +27,13 @@ export async function createProject(formData: FormData) {
             const newSampleId = newSampleRef.id;
             await setDoc(doc(db, 'samples', newSampleId), {
                 projectId: newProjectId,
+                projectname: projectName,
                 sampleId: newSampleId,
-                sampleNumber: index + 1,
-                name: projectName,
+                sampleNumber: `${nextProjectNumber} - ${index + 1}`,
+                sampleLabel: '',
+                media: formData.get('type'),
+                analyticalValue: 0,
+                unit: getAnalyticalUnit(formData.get('type'))
             });
         }
     } catch (error) {
@@ -43,4 +47,10 @@ async function getProjectNumber() {
     const currentCount = querySnapshot.size || 0;
     const newCount = currentCount + 1;
     return newCount;
+}
+
+function getAnalyticalUnit(projectType: any){
+    if(projectType == 'soil'){
+        return 'mg/kg'
+    } return 'μg/L'
 }
