@@ -1,44 +1,21 @@
-'use server';
+import { db } from '../utils/db';
+import { getDocs, doc, collection } from 'firebase/firestore';
 import { NextResponse } from 'next/server';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, collection, getDocs, addDoc, setDoc } from 'firebase/firestore';
 
-const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
-    measurementId: process.env.FIREBASE_MEASUREMENT_ID,
-};
+export async function GET(request: Request) {
+    // Get all projects from firestore
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+    const projectsSnap = await getDocs(collection(db, 'projects'));
+    const projects = projectsSnap.docs.map((project: any) => ({
+        client: project.data().client,
+        name: project.data().name,
+        number: project.data().number,
+        numberSamples: project.data().numberSamples,
+        projectId: project.data().projectId,
+        tat: project.data().tat,
+        type: project.data().type,
+    }));
 
-// UPDATE project
-export async function PUT(request: Request) {
-    const data = await request.json();
-    console.log(data);
-
-    try {
-        const querySnapshot = await getDocs(query(collection(db, 'clients'), where('clientId.', '==', data.clientId)));
-        if (querySnapshot.empty) {
-            console.error('No client found with the provided clientId');
-            return NextResponse.json({ error: 'Client not found' }, { status: 404 });
-        }
-
-        await setDoc(doc(db, 'clients', data.clientId), {
-            name: data.name,
-            phone: data.phone,
-            email: data.email,
-            address: data.address,
-            city: data.city,
-            state: data.state,
-            zip: data.zip,
-        });
-    } catch (error) {
-        console.error('Error creating client:', error);
-        return NextResponse.json({ error: 'Failed to create client' }, { status: 500 });
-    }
+    // Send back to client
+    return NextResponse.json({ projects });
 }

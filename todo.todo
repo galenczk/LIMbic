@@ -1,21 +1,36 @@
+☐ Convert all firestore interactions into calls to a server API
+
+
 ☐ Implement logic for handling dates and project value.
 ☐ When a project is deleted, all of its samples should be deleted
 
+API routes:
+    ✔ getAllProjects @done(25-01-20 20:50)
+    ☐ getOneProject
+    ☐ updateProject
+    ☐ dataEntryProject
+    ☐ deleteProject
 
-
+    ☐ getAllClients
+    ☐ getOneClient
+    ☐ updateClient
+    ☐ deleteClient
 
 Pages to create:
     ✔ Add client @done(25-01-13 11:07)
     ✔ Edit client @done(25-01-13 17:59)
     ✔ Edit project @done(25-01-13 19:57)
-    ☐ Data entry (Analysis)
-        The form needs to send a list of Sample objects and all of their data to be updated on db.
+    ✔ Data entry (Analysis) @done(25-01-20 15:44)
     ☐ Deleted entities
     ☐ Price sheet (for admins)
     ☐ View client's project list (link to this will be the client name on Client page)
 
+    ☐ Login page
+    ☐ Navbar (Home, projects, clients, [logout])
+
 Auth:
-    ☐ Create different classes of user and give them priviledges based on this
+    ☐ 
+    Create different classes of user and give them priviledges based on this
         Analyst, Admin, Client??
 
 Testing: 

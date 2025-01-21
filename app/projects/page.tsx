@@ -3,21 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../api/utils/db';
 
 export default async function projectsPage() {
-    // Get all Projects from firestore.
-    const querySnapshot = await getDocs(collection(db, 'projects'));
-
-    const projects = querySnapshot.docs.map((project: any) => ({
-        number: project.data().number,
-        name: project.data().name,
-        client: project.data().client,
-        type: project.data().type,
-        numberSamples: project.data().numberSamples,
-        openedDate: project.data().openedDate,
-        tat: project.data().tat,
-        dueDate: project.data().dueDate,
-        value: project.data().value,
-        projectId: project.data().projectId,
-    }));
+    const projects = await getAllProjects();
 
     // Look at how to render date when you start adding projects via a form on client
     // Need to add openedDate, dueDate, and value. Should go opened, tat, due, value
@@ -58,4 +44,10 @@ export default async function projectsPage() {
             </div>
         </div>
     );
+}
+
+async function getAllProjects(){
+    const res = await fetch('http://localhost:3000/api/projects');
+    const data = await res.json();
+    return data.projects;
 }

@@ -3,7 +3,7 @@ import { db } from '../utils/db';
 import { doc, setDoc } from 'firebase/firestore';
 
 export async function updateProject(formData: FormData) {
-    const projectId = formData.get('projectId');
+    const projectId = formData.get('projectId') as string;
     try {
         await setDoc(doc(db, 'projects', projectId), {
             projectId: projectId,

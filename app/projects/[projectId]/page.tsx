@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../api/utils/db';
+import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
+import { db } from '@/app/api/utils/db';
+import deleteProject from '@/app/api/utils/deleteProject';
 
 interface ProjectPageProps {
     params: { projectId: string };
@@ -8,6 +9,7 @@ interface ProjectPageProps {
 
 export default async function projectInfoPage({ params }: ProjectPageProps) {
     // Get data for single Client based on clientId
+    // TODO: turn getProject logic into a function
     const { projectId } = await params;
     const docRef = doc(db, 'projects', projectId);
     const docSnap = await getDoc(docRef);
@@ -29,6 +31,8 @@ export default async function projectInfoPage({ params }: ProjectPageProps) {
             <Link href={`/projects/update/${projectId}`}>Edit Project Details</Link>
             <div />
             <Link href={`/projects/dataEntry/${projectId}`}>Enter Analytical Data</Link>
+            <div />
+            <button onClick={() => deleteProject(project)}>Delete Project</button>
         </div>
     );
 }

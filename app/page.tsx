@@ -2,8 +2,6 @@ import Link from 'next/link'
 
 // Home page, login screen
 
-
-
 export default function Home() {
   return (
       <div>

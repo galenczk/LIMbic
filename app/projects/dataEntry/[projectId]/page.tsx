@@ -7,7 +7,6 @@
 import Link from 'next/link';
 import Form from 'next/form';
 import { collection, getDocs, getDoc, query, setDoc, doc, where } from 'firebase/firestore';
-import { dataEntry } from '../../../api/utils/dataEntry';
 import { db } from '../../../api/utils/db';
 
 interface DataEntryProps {
