@@ -1,24 +1,16 @@
 import Link from 'next/link';
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '@/app/api/utils/db';
-import deleteProject from '@/app/api/utils/deleteProject';
 
 interface ProjectPageProps {
     params: { projectId: string };
 }
 
 export default async function projectInfoPage({ params }: ProjectPageProps) {
-    // Get data for single Client based on clientId
-    // TODO: turn getProject logic into a function
     const { projectId } = await params;
-    const docRef = doc(db, 'projects', projectId);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) {
-        return <div>Project not found</div>;
-    }
-    const project = docSnap.data();
-
-    return (
+    const project = await getSingleProject(projectId)
+    
+   return (
         <div>
             <div>
                 <h1>{project.number}</h1>
@@ -32,7 +24,13 @@ export default async function projectInfoPage({ params }: ProjectPageProps) {
             <div />
             <Link href={`/projects/dataEntry/${projectId}`}>Enter Analytical Data</Link>
             <div />
-            <button onClick={() => deleteProject(project)}>Delete Project</button>
+            
         </div>
     );
+}
+
+async function getSingleProject(projectId){
+    const res = await fetch(`http://localhost:3000/api/projects/${projectId}`)
+    const data = await res.json()
+    return data.project
 }

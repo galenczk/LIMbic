@@ -6,8 +6,8 @@
 
 API routes:
     ✔ getAllProjects @done(25-01-20 20:50)
-    ☐ getOneProject
-    ☐ updateProject
+    ✔ getOneProject @done(25-01-21 18:06)
+    ✔ updateProject @done(25-01-21 18:28)
     ☐ dataEntryProject
     ☐ deleteProject
 

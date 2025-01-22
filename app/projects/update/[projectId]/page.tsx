@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../api/utils/db';
-import { updateProject } from '../../../api/utils/updateProject';
+//import { updateProject } from '../../../api/utils/updateProject';
 
 interface ProjectPageProps {
     params: { projectId: string };
@@ -33,4 +33,25 @@ export default async function updateProjectPage({ params }: ProjectPageProps) {
             </form>
         </div>
     );
+}
+
+async function updateProject(formData){
+    'use server'
+    const projectId = formData.get('projectId')
+    const project = {
+        number: formData.get('number'),
+        name: formData.get('name'),
+        client: formData.get('client'),
+        type: formData.get('type'),
+        numberSamples: formData.get('numberSamples'),
+        tat: formData.get('tat'),
+        projectId: formData.get('projectId'),
+    };
+    const res = await fetch(`http://localhost:3000/api/projects/${projectId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(project)
+    })
+    const status = await res.json()
+    return status
 }
