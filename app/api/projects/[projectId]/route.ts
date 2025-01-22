@@ -3,7 +3,7 @@ import { getDoc, doc, setDoc, collection } from 'firebase/firestore';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Get a single project with projectId
+// GET SINGLE PROJECT with projectID
 export async function GET(req: NextRequest, { params }: { params: { projectId: string } }) {
     try {
         const projectId = await params.projectId;
@@ -21,16 +21,13 @@ export async function GET(req: NextRequest, { params }: { params: { projectId: s
     }
 }
 
-// Updates project data
+// UPDATE PROJECT with projectId
 export async function POST(req: NextRequest, { params }: { params: { projectId: string } }) {
     try {
         const body = await req.json();
 
         if (!body.projectId) {
-            return NextResponse.json(
-                { error: 'Missing projectId in request body.' },
-                { status: 400 }
-            );
+            return NextResponse.json({ error: 'Missing projectId in request body.' }, { status: 400 });
         }
 
         await setDoc(doc(db, 'projects', body.projectId), body);
@@ -38,13 +35,10 @@ export async function POST(req: NextRequest, { params }: { params: { projectId: 
         return NextResponse.json({
             status: 201,
             projectId: body.projectId,
-            message: `Project ${body.projectId} updated successfully.`
+            message: `Project ${body.projectId} updated successfully.`,
         });
     } catch (error) {
         console.error('Error updating project:', error);
-        return NextResponse.json(
-            { error: 'Failed to update project. Please try again later.' },
-            { status: 500 }
-        );
+        return NextResponse.json({ error: 'Failed to update project. Please try again later.' }, { status: 500 });
     }
-
+}

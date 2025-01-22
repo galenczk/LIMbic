@@ -1,4 +1,5 @@
 ☐ Convert all firestore interactions into calls to a server API
+☐ Add docstrings to all API routes that list path of file that makes call to it
 
 
 ☐ Implement logic for handling dates and project value.
@@ -8,8 +9,11 @@ API routes:
     ✔ getAllProjects @done(25-01-20 20:50)
     ✔ getOneProject @done(25-01-21 18:06)
     ✔ updateProject @done(25-01-21 18:28)
-    ☐ dataEntryProject
+    ✔ dataEntryProject @done(25-01-21 20:32)
     ☐ deleteProject
+
+    ☐ getSamples
+        Add to dataentry page as well
 
     ☐ getAllClients
     ☐ getOneClient

@@ -2,7 +2,7 @@ import { db } from '../utils/db';
 import { getDocs, doc, collection } from 'firebase/firestore';
 import { NextResponse } from 'next/server';
 
-// Get all projects
+// GET ALL PROJECTS
 export async function GET(req: Request) {
     try {
         const projectsSnap = await getDocs(collection(db, 'projects'));

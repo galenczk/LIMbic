@@ -13,22 +13,23 @@ interface DataEntryProps {
     params: { projectId: string };
 }
 
+// DATA ENTRY PAGE
 export default async function dataEntryPage({ params }: DataEntryProps) {
     // Get data for this Project
     const { projectId } = await params;
-    const project = await getProject(projectId);
+    const project = await getSingleProject(projectId);
     // Get all samples for this Project
     let samples = await getSamples(projectId);
+    console.log(samples);
 
-    async function updateSamples(formData: any) {
+    async function updateSamples(formData) {
         'use server';
-
         for (let index = 0; index < samples.length; index++) {
-            // Assign new sample data to Samples array.
+            // Assign new values to samples array of objects
             samples[index].analyticalValue = formData.getAll('analyticalValue')[index];
             samples[index].sampleLabel = formData.getAll('sampleLabel')[index];
 
-            // Firestore update.
+            // Firestore update
             await setDoc(doc(db, 'samples', formData.getAll('sampleIds')[index]), samples[index]);
         }
     }
@@ -73,31 +74,14 @@ export default async function dataEntryPage({ params }: DataEntryProps) {
     );
 }
 
-async function getProject(projectId: string) {
-    const docRef = doc(db, 'projects', projectId);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) {
-        return <div>Project not found</div>;
-    }
-    const project = docSnap.data();
-    return project;
+async function getSingleProject(projectId: string) {
+    const res = await fetch(`http://localhost:3000/api/projects/${projectId}`);
+    const data = await res.json();
+    return data.project;
 }
 
 async function getSamples(projectId: string) {
-    // Get all samples for this Project
-    const q = query(collection(db, 'samples'), where('projectId', '==', projectId));
-    const querySnapshot = await getDocs(q);
-
-    const samples = querySnapshot.docs.map((sample: any) => ({
-        projectId: sample.data().projectId,
-        projectName: sample.data().projectName,
-        sampleId: sample.data().sampleId,
-        sampleNumber: sample.data().sampleNumber,
-        sampleLabel: sample.data().sampleLabel,
-        media: sample.data().media,
-        analyticalValue: sample.data().analyticalValue,
-        unit: sample.data().unit,
-    }));
-
-    return samples;
+    const res = await fetch(`http://localhost:3000/api/projects/${projectId}/samples`);
+    const data = await res.json();
+    return data.samples;
 }
