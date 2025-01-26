@@ -20,24 +20,24 @@ export async function GET(req: NextRequest, { params }: { params: { clientId: st
     }
 }
 
-// UPDATE PROJECT with projectId
+// UPDATE CLIENT with clientId
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
 
-        if (!body.projectId) {
-            return NextResponse.json({ error: 'Missing projectId in request body.' }, { status: 400 });
+        if (!body.clientId) {
+            return NextResponse.json({ error: 'Missing clientId in request body.' }, { status: 400 });
         }
 
-        await setDoc(doc(db, 'projects', body.projectId), body);
+        await setDoc(doc(db, 'clients', body.clientId), body);
 
         return NextResponse.json({
             status: 201,
-            projectId: body.projectId,
-            message: `Project ${body.projectId} updated successfully.`,
+            clientId: body.clientId,
+            message: `Client ${body.clientId} updated successfully.`,
         });
     } catch (error) {
-        console.error('Error updating project:', error);
-        return NextResponse.json({ error: 'Failed to update project. Please try again later.' }, { status: 500 });
+        console.error('Error updating client:', error);
+        return NextResponse.json({ error: 'Failed to update client. Please try again later.' }, { status: 500 });
     }
 }

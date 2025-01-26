@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../api/utils/db';
-//import { updateProject } from '../../../api/utils/updateProject';
 
 interface ProjectPageProps {
     params: { projectId: string };
@@ -10,12 +9,7 @@ interface ProjectPageProps {
 export default async function updateProjectPage({ params }: ProjectPageProps) {
     // Get data for single Client based on clientId
     const { projectId } = params;
-    const docRef = doc(db, 'projects', projectId);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) {
-        return <div>Project not found</div>;
-    }
-    const project = docSnap.data();
+    const project = await getSingleProject(projectId);
 
     return (
         <div>
@@ -35,9 +29,15 @@ export default async function updateProjectPage({ params }: ProjectPageProps) {
     );
 }
 
-async function updateProject(formData){
-    'use server'
-    const projectId = formData.get('projectId')
+async function getSingleProject(projectId) {
+    const res = await fetch(`http://localhost:3000/api/projects/${projectId}`);
+    const data = await res.json();
+    return data.project;
+}
+
+async function updateProject(formData) {
+    'use server';
+    const projectId = formData.get('projectId');
     const project = {
         number: formData.get('number'),
         name: formData.get('name'),
@@ -50,8 +50,8 @@ async function updateProject(formData){
     const res = await fetch(`http://localhost:3000/api/projects/${projectId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(project)
-    })
-    const status = await res.json()
-    return status
+        body: JSON.stringify(project),
+    });
+    const status = await res.json();
+    return status;
 }

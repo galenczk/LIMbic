@@ -17,7 +17,7 @@ API routes:
 
     ✔ getAllClients @done(25-01-26 12:57)
     ✔ getOneClient @done(25-01-26 13:04)
-    ☐ updateClient
+    ✔ updateClient @done(25-01-26 13:12)
     ☐ deleteClient
 
 Pages to create:

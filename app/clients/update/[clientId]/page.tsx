@@ -1,7 +1,4 @@
 import Link from 'next/link';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../../api/utils/db';
-import {updateClient} from '../../../api/utils/updateClient'
 
 interface ClientPageProps {
     params: { clientId: string };
@@ -10,12 +7,7 @@ interface ClientPageProps {
 export default async function updateClientPage({ params }: ClientPageProps) {
     // Get data for single Client based on clientId
     const { clientId } = params;
-    const docRef = doc(db, 'clients', clientId);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) {
-        return <div>Client not found</div>;
-    }
-    const client = docSnap.data();
+    const client = await getSingleClient(clientId)
 
     return (
         <div>
@@ -34,4 +26,32 @@ export default async function updateClientPage({ params }: ClientPageProps) {
             </form>
         </div>
     );
+}
+
+async function getSingleClient(clientId) {
+    const res = await fetch(`http://localhost:3000/api/clients/${clientId}`);
+    const data = await res.json();
+    return data.client;
+}
+
+async function updateClient(formData) {
+    'use server';
+    const clientId = formData.get('clientId');
+    const client = {
+        address: formData.get('address'),
+        city: formData.get('city'),
+        clientId: formData.get('clientId'),
+        email: formData.get('email'),
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        state: formData.get('state'),
+        zip: formData.get('zip'),
+    };
+    const res = await fetch(`http://localhost:3000/api/clients/${clientId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(client),
+    });
+    const status = await res.json();
+    return status;
 }
