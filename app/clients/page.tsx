@@ -3,19 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../api/utils/db';
 
 export default async function clientsPage() {
-    // Get all Clients from firestore.
-    const querySnapshot = await getDocs(collection(db, 'clients'));
-
-    const clients = querySnapshot.docs.map((client: any) => ({
-        clientId: client.data().clientId,
-        name: client.data().name,
-        phone: client.data().phone,
-        email: client.data().email,
-        address: client.data().address,
-        city: client.data().city,
-        state: client.data().state,
-        zip: client.data().zip,
-    }));
+    const clients = await getAllClients()
 
     return (
         <div>
@@ -57,4 +45,10 @@ export default async function clientsPage() {
             </div>
         </div>
     );
+}
+
+async function getAllClients(){
+    const res = await fetch('http://localhost:3000/api/clients');
+    const data = await res.json();
+    return data.clients;
 }
