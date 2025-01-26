@@ -25,35 +25,23 @@ export async function GET(req: Request) {
     }
 }
 
-// CREATE PROJECT
+// CREATE CLIENT
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
 
-        const newProjectRef = doc(collection(db, 'projects'));
-        const newProjectId = newProjectRef.id;
-        const nextProjectNumber = await getProjectNumber();
+        const newClientRef = doc(collection(db, 'clients'));
+        const newClientId = newClientRef.id;
 
-        body.number = nextProjectNumber;
-        body.projectId = newProjectId;
-
-        await setDoc(doc(db, 'projects', newProjectId), body);
+        await setDoc(doc(db, 'clients', newClientId), body);
 
         return NextResponse.json({
             status: 201,
-            projectId: body.projectId,
-            message: `Project ${body.projectId} updated successfully.`,
+            newClientId: newClientId,
+            message: `Client ${newClientId} created successfully.`,
         });
     } catch (error) {
-        console.error('Error updating project:', error);
-        return NextResponse.json({ error: 'Failed to update project. Please try again later.' }, { status: 500 });
+        console.error('Error creating new client:', error);
+        return NextResponse.json({ error: 'Failed to create client. Please try again later.' }, { status: 500 });
     }
-}
-
-// Gets next incremental project number
-async function getProjectNumber() {
-    const querySnapshot = await getDocs(collection(db, 'projects'));
-    const currentCount = querySnapshot.size || 0;
-    const newCount = currentCount + 1;
-    return newCount;
 }

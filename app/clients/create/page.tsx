@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { createClient } from '../../api/utils/createClient';
 
 export default async function createProjectPage() {
     return (
@@ -25,4 +24,24 @@ export default async function createProjectPage() {
             </form>
         </div>
     );
+}
+
+async function createClient(formData) {
+    'use server';
+    const client = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        address: formData.get('address'),
+        city: formData.get('city'),
+        state: formData.get('state'),
+        zip: formData.get('zip'),
+    };
+    const res = await fetch(`http://localhost:3000/api/clients`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(client),
+    });
+    const status = await res.json();
+    return status;
 }
