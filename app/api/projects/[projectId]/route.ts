@@ -22,7 +22,7 @@ export async function GET(req: NextRequest, { params }: { params: { projectId: s
 }
 
 // UPDATE PROJECT with projectId
-export async function POST(req: NextRequest, { params }: { params: { projectId: string } }) {
+export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
 

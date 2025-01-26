@@ -17,10 +17,8 @@ interface DataEntryProps {
 export default async function dataEntryPage({ params }: DataEntryProps) {
     // Get data for this Project
     const { projectId } = await params;
-    const project = await getSingleProject(projectId);
     // Get all samples for this Project
     let samples = await getSamples(projectId);
-    console.log(samples);
 
     async function updateSamples(formData) {
         'use server';

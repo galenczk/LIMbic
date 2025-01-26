@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { createProject } from '../../api/utils/createProject';
 
 export default async function createProjectPage() {
     return (
@@ -21,4 +20,24 @@ export default async function createProjectPage() {
             </form>
         </div>
     );
+}
+
+async function createProject(formData) {
+    'use server';
+    const project = {
+        number: formData.get('number'),
+        name: formData.get('name'),
+        client: formData.get('client'),
+        type: formData.get('type'),
+        numberSamples: formData.get('numberSamples'),
+        tat: formData.get('tat'),
+        projectId: formData.get('projectId'),
+    };
+    const res = await fetch(`http://localhost:3000/api/projects`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(project),
+    });
+    const status = await res.json();
+    return status;
 }

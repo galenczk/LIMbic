@@ -10,10 +10,10 @@ API routes:
     ✔ getOneProject @done(25-01-21 18:06)
     ✔ updateProject @done(25-01-21 18:28)
     ✔ dataEntryProject @done(25-01-21 20:32)
-    ☐ deleteProject
+    ✔ deleteProject @done(25-01-21 21:10)
+    ✔ createProject @done(25-01-26 12:51)
 
-    ☐ getSamples
-        Add to dataentry page as well
+    ✔ getSamples @done(25-01-21 20:33)
 
     ☐ getAllClients
     ☐ getOneClient
@@ -28,6 +28,8 @@ Pages to create:
     ☐ Deleted entities
     ☐ Price sheet (for admins)
     ☐ View client's project list (link to this will be the client name on Client page)
+    ☐ ProjectDetailsPage should have list of samples and their results
+    ☐ Project Report??
 
     ☐ Login page
     ☐ Navbar (Home, projects, clients, [logout])

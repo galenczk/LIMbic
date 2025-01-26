@@ -1,6 +1,6 @@
 import { db } from '../utils/db';
-import { getDocs, doc, collection } from 'firebase/firestore';
-import { NextResponse } from 'next/server';
+import { getDocs, setDoc, doc, collection } from 'firebase/firestore';
+import { NextResponse, NextRequest } from 'next/server';
 
 // GET ALL PROJECTS
 export async function GET(req: Request) {
@@ -22,4 +22,37 @@ export async function GET(req: Request) {
         console.error('Error fetching projects:', error);
         return NextResponse.json({ error: 'Failed to fetch projects. Please try again later.' }, { status: 500 });
     }
+}
+
+// CREATE PROJECT
+export async function POST(req: NextRequest) {
+    try {
+        const body = await req.json();
+
+        const newProjectRef = doc(collection(db, 'projects'));
+        const newProjectId = newProjectRef.id;
+        const nextProjectNumber = await getProjectNumber();
+
+        body.number = nextProjectNumber
+        body.projectId = newProjectId
+
+        await setDoc(doc(db, 'projects', newProjectId), body);
+
+        return NextResponse.json({
+            status: 201,
+            projectId: body.projectId,
+            message: `Project ${body.projectId} updated successfully.`,
+        });
+    } catch (error) {
+        console.error('Error updating project:', error);
+        return NextResponse.json({ error: 'Failed to update project. Please try again later.' }, { status: 500 });
+    }
+}
+
+// Gets next incremental project number
+async function getProjectNumber() {
+    const querySnapshot = await getDocs(collection(db, 'projects'));
+    const currentCount = querySnapshot.size || 0;
+    const newCount = currentCount + 1;
+    return newCount;
 }
