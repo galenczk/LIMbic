@@ -14,6 +14,7 @@ export async function GET(req: Request) {
             city: client.data().city,
             state: client.data().state,
             zip: client.data().zip,
+            clientId: client.data().clientId,
         }));
 
         // Send back to client

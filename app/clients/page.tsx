@@ -4,6 +4,8 @@ import { db } from '../api/utils/db';
 
 export default async function clientsPage() {
     const clients = await getAllClients()
+    console.log(clients);
+    
 
     return (
         <div>
@@ -36,7 +38,7 @@ export default async function clientsPage() {
                                 <td>{client.address}</td>
                                 <td>{client.city}</td>
                                 <td>{client.state}</td>
-                                <td>{client.clientId}</td>
+                                <td>{client.zip}</td>
                             </tr>
                         ))}
                     </tbody>

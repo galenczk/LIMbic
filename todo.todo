@@ -15,8 +15,8 @@ API routes:
 
     ✔ getSamples @done(25-01-21 20:33)
 
-    ☐ getAllClients
-    ☐ getOneClient
+    ✔ getAllClients @done(25-01-26 12:57)
+    ✔ getOneClient @done(25-01-26 13:04)
     ☐ updateClient
     ☐ deleteClient
 

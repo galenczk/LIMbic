@@ -7,14 +7,8 @@ interface ClientPageProps {
 }
 
 export default async function clientInfoPage({ params }: ClientPageProps) {
-    // Get data for single Client based on clientId
-    const { clientId } = await params;
-    const docRef = doc(db, 'clients', clientId);
-    const docSnap = await getDoc(docRef);
-    if (!docSnap.exists()) {
-        return <div>Client not found</div>;
-    }
-    const client = docSnap.data();
+    const {clientId} = await params
+    const client = await getSingleClient(clientId)
 
     return (
         <div>
@@ -30,4 +24,10 @@ export default async function clientInfoPage({ params }: ClientPageProps) {
             <Link href={`/clients/update/${clientId}`}>Edit Client</Link>
         </div>
     );
+}
+
+async function getSingleClient(clientId){
+    const res = await fetch(`http://localhost:3000/api/clients/${clientId}`);
+    const data = await res.json();
+    return data.client;
 }
