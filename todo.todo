@@ -10,15 +10,17 @@ API routes:
     ✔ getOneProject @done(25-01-21 18:06)
     ✔ updateProject @done(25-01-21 18:28)
     ✔ dataEntryProject @done(25-01-21 20:32)
-    ✔ deleteProject @done(25-01-21 21:10)
+    ✔ deleteProject @done(25-01-26 14:20)
     ✔ createProject @done(25-01-26 12:51)
 
-    ✔ getSamples @done(25-01-21 20:33)
+    ✔ getSamples @done(25-01-26 14:58)
+    ✔ updateSamples @done(25-01-26 14:58)
 
     ✔ getAllClients @done(25-01-26 12:57)
     ✔ getOneClient @done(25-01-26 13:04)
     ✔ updateClient @done(25-01-26 13:12)
-    ☐ deleteClient
+    ✔ deleteClient @done(25-01-26 14:20)
+
 
 Pages to create:
     ✔ Add client @done(25-01-13 11:07)
@@ -53,4 +55,7 @@ Testing:
 
 Typescript:
     ☐ Make sure each page has a Typescript interface, as needed
+
+Futurework:
+    ✔ Should samples just be an array within the project doc? @done(25-01-26 14:58)
         

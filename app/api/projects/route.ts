@@ -33,9 +33,30 @@ export async function POST(req: NextRequest) {
         const newProjectId = newProjectRef.id;
         const nextProjectNumber = await getProjectNumber();
 
-        body.number = nextProjectNumber
-        body.projectId = newProjectId
+        body.number = nextProjectNumber;
+        body.projectId = newProjectId;
+        body.samples = []
 
+        let sampleUnit;
+        if (body.type == 'Soil') {
+            sampleUnit = 'mg/kg';
+        } else if (body.type == 'Water') {
+            sampleUnit = 'mcg/L';
+        }
+        
+        // Create samples for project.
+        for (let index = 0; index < body.numberSamples; index++) {
+            const newSampleRef = doc(collection(db, 'samples'))
+            body.samples.push({
+                sampleId: newSampleRef.id,
+                sampleNumber: `${nextProjectNumber} - ${index}`,
+                sampleLabel: '',
+                media: body.type,
+                analyticalValue: 0,
+                unit: sampleUnit,
+            });
+        }
+        // Create project
         await setDoc(doc(db, 'projects', newProjectId), body);
 
         return NextResponse.json({

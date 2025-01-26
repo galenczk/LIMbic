@@ -3,9 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../api/utils/db';
 
 export default async function clientsPage() {
-    const clients = await getAllClients()
-    console.log(clients);
-    
+    const clients = await getAllClients();
 
     return (
         <div>
@@ -49,7 +47,7 @@ export default async function clientsPage() {
     );
 }
 
-async function getAllClients(){
+async function getAllClients() {
     const res = await fetch('http://localhost:3000/api/clients');
     const data = await res.json();
     return data.clients;

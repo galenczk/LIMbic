@@ -17,19 +17,23 @@ interface DataEntryProps {
 export default async function dataEntryPage({ params }: DataEntryProps) {
     // Get data for this Project
     const { projectId } = await params;
+    const project = await getSingleProject(projectId);
     // Get all samples for this Project
-    let samples = await getSamples(projectId);
+    let samples = project.samples;
 
     async function updateSamples(formData) {
         'use server';
+        let analyticalValues = formData.getAll('analyticalValue')
+        let sampleLabels = formData.getAll('sampleLabel')
         for (let index = 0; index < samples.length; index++) {
-            // Assign new values to samples array of objects
-            samples[index].analyticalValue = formData.getAll('analyticalValue')[index];
-            samples[index].sampleLabel = formData.getAll('sampleLabel')[index];
-
-            // Firestore update
-            await setDoc(doc(db, 'samples', formData.getAll('sampleIds')[index]), samples[index]);
+            project.samples[index].analyticalValue = analyticalValues[index]
+            project.samples[index].sampleLabel = sampleLabels[index]
         }
+        const res = await fetch(`http:localhost:3000/api/projects/${projectId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(project),
+        });
     }
 
     return (
@@ -51,13 +55,16 @@ export default async function dataEntryPage({ params }: DataEntryProps) {
                             <tr key={key}>
                                 <td>{sample.sampleNumber}</td>
                                 <td>
-                                    {/** Hidden input to include sampleId in formData */}
-                                    <input type='hidden' name='sampleIds' defaultValue={sample.sampleId}></input>
-
-                                    <input type='text' name='sampleLabel' className='text-black' required />
+                                    <input type='text' name='sampleLabel' className='text-black' defaultValue={sample.sampleLabel} required />
                                 </td>
                                 <td>
-                                    <input type='text' name='analyticalValue' className='text-black' required />
+                                    <input
+                                        type='text'
+                                        name='analyticalValue'
+                                        className='text-black'
+                                        defaultValue={sample.analyticalValue}
+                                        required
+                                    />
                                 </td>
                                 <td>{sample.unit}</td>
                             </tr>
@@ -76,10 +83,4 @@ async function getSingleProject(projectId: string) {
     const res = await fetch(`http://localhost:3000/api/projects/${projectId}`);
     const data = await res.json();
     return data.project;
-}
-
-async function getSamples(projectId: string) {
-    const res = await fetch(`http://localhost:3000/api/projects/${projectId}/samples`);
-    const data = await res.json();
-    return data.samples;
 }

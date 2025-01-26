@@ -1,5 +1,5 @@
 import { db } from '../../utils/db';
-import { getDoc, doc, setDoc, collection } from 'firebase/firestore';
+import { getDoc, doc, setDoc, collection, deleteDoc } from 'firebase/firestore';
 import { NextRequest, NextResponse } from 'next/server';
 
 // GET SINGLE CLIENT with clientId
@@ -21,23 +21,44 @@ export async function GET(req: NextRequest, { params }: { params: { clientId: st
 }
 
 // UPDATE CLIENT with clientId
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, { params }: { params: { clientId: string } }) {
     try {
         const body = await req.json();
+        const clientId = await params.clientId;
 
-        if (!body.clientId) {
-            return NextResponse.json({ error: 'Missing clientId in request body.' }, { status: 400 });
-        }
-
-        await setDoc(doc(db, 'clients', body.clientId), body);
+        await setDoc(doc(db, 'clients', clientId), body);
 
         return NextResponse.json({
             status: 201,
-            clientId: body.clientId,
-            message: `Client ${body.clientId} updated successfully.`,
+            clientId: clientId,
+            message: `Client ${clientId} updated successfully.`,
         });
     } catch (error) {
         console.error('Error updating client:', error);
         return NextResponse.json({ error: 'Failed to update client. Please try again later.' }, { status: 500 });
+    }
+}
+
+// DELETE CLIENT with clientId
+export async function DELETE(req: NextRequest, { params }: { params: { clientId: string } }) {
+    try {
+        const clientId = await params.clientId;
+
+        const client = await getDoc(doc(db, 'clients', clientId));
+
+        // Create new doc in deletedProjects. If this fails, error out.
+        await setDoc(doc(db, 'deletedClients', clientId), client.data());
+
+        // Remove Project.
+        await deleteDoc(doc(db, 'clients', clientId));
+
+        return NextResponse.json({
+            status: 202,
+            clientId: clientId,
+            message: `Client ${clientId} deleted successfully.`,
+        });
+    } catch (error) {
+        console.error('Error deleting client:', error);
+        return NextResponse.json({ error: 'Failed to delete client. Please try again later.' }, { status: 500 });
     }
 }
