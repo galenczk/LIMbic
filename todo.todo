@@ -22,6 +22,9 @@ API routes:
     ✔ deleteClient @done(25-01-26 14:20)
     ✔ createClient @done(25-01-26 15:12)
 
+    ✔ undeleteProject @done(25-01-27 20:08)
+    ✔ undeleteClient @done(25-01-27 20:08)
+
 
 Pages to create:
     ✔ Add client @done(25-01-13 11:07)
@@ -29,18 +32,26 @@ Pages to create:
     ✔ Edit project @done(25-01-13 19:57)
     ✔ Data entry (Analysis) @done(25-01-20 15:44)
     ☐ Deleted entities
+        'path/deleted' - Page that lists both deleted entities in two scrollable lists
+        Maybe have 'path/deleted/projects' and '/clients' that displays all deleted on one page (searchable?, sortable?)
+
     ☐ Price sheet (for admins)
-    ☐ View client's project list (link to this will be the client name on Client page)
+        This should probably be implemented after analytes
+
+    ☐ View client's project list (quick list [scrollable small list] should be on client info page, with a larger organized table available via link)
+
     ☐ ProjectDetailsPage should have list of samples and their results
+
     ☐ Project Report??
 
     ☐ Login page
-    ☐ Navbar (Home, projects, clients, [logout])
 
-Auth:
-    ☐ 
-    Create different classes of user and give them priviledges based on this
-        Analyst, Admin, Client??
+    ☐ Navbar (Home, projects, clients, [logout])
+        Beneath the page header
+
+Styling: 
+    ☐ Create layouts for forms and other common pages
+
 
 Testing: 
     ☐ Create tests in Postman for API routes
@@ -48,6 +59,8 @@ Testing:
         POST Projects
         UPDATE Projects
         DELETE Projects
+        UPDATE Samples on Project
+
         GET Clients
         POST Clients
         UPDATE Clients
@@ -57,8 +70,21 @@ Testing:
 Typescript:
     ☐ Make sure each page has a Typescript interface, as needed
 
+Auth:
+    ☐ 
+    Create different classes of user and give them priviledges based on this
+        Analyst, Admin, Client??
 Futurework:
     ✔ Should samples just be an array within the project doc? @done(25-01-26 14:58)
     ☐ Client should have an array of projectIds for that client
         Use updateDoc to only write the new array and not have to 
+
+    ☐ Projects and clients should be searchable and sortable
+
+    ☐ On Analytes:
+    Samples should have a number of different analyses attached to them (TPH, RCRA, PCBs for soil for example)
+    During the project creation process, user should be able to select analyses
+    Page for selecting analyses should be linked to depending on the type of project 
+    Analytes should be a property of a sample (this doesnt need to be crazy, just demonstrate functionality)
+    Maybe compare these to state DOH EALs in some kind of report format
         

@@ -1,13 +1,13 @@
 'use client';
 
-export default function DeleteClientButton({ clientId, deleteClient }) {
+export default function UndeleteClientButton({ clientId, undeleteClient }) {
     return (
         <>
             <button
                 onClick={() => {
-                    deleteClient(clientId);
+                    undeleteClient(clientId);
                 }}>
-                Delete Client
+                Restore Client
             </button>
         </>
     );

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-      <div>
+      <div className='flex flex-col'>
           <div> Login Screen</div>
           <Link href={`/projects/`} className='bg-blue-400'>
               Projects
@@ -12,6 +12,10 @@ export default function Home() {
           <div />
           <Link href={`/clients/`} className='bg-blue-400'>
               Clients
+          </Link>
+          <div />
+          <Link href={`/deleted`} className='bg-blue-400'>
+              Deleted Entities
           </Link>
 
           

@@ -33,6 +33,8 @@ export async function POST(req: NextRequest) {
         const newClientRef = doc(collection(db, 'clients'));
         const newClientId = newClientRef.id;
 
+        body.clientId = newClientId
+
         await setDoc(doc(db, 'clients', newClientId), body);
 
         return NextResponse.json({
