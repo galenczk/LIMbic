@@ -1,30 +1,7 @@
-☐ Convert all firestore interactions into calls to a server API
-☐ Add docstrings to all API routes that list path of file that makes call to it
-
-
-☐ Implement logic for handling dates and project value.
-☐ When a project is deleted, all of its samples should be deleted
-
-API routes:
-    ✔ getAllProjects @done(25-01-20 20:50)
-    ✔ getOneProject @done(25-01-21 18:06)
-    ✔ updateProject @done(25-01-21 18:28)
-    ✔ dataEntryProject @done(25-01-21 20:32)
-    ✔ deleteProject @done(25-01-26 14:20)
-    ✔ createProject @done(25-01-26 12:51)
-
-    ✔ getSamples @done(25-01-26 14:58)
-    ✔ updateSamples @done(25-01-26 14:58)
-
-    ✔ getAllClients @done(25-01-26 12:57)
-    ✔ getOneClient @done(25-01-26 13:04)
-    ✔ updateClient @done(25-01-26 13:12)
-    ✔ deleteClient @done(25-01-26 14:20)
-    ✔ createClient @done(25-01-26 15:12)
-
-    ✔ undeleteProject @done(25-01-27 20:08)
-    ✔ undeleteClient @done(25-01-27 20:08)
-
+General work:
+    ✔ Convert all firestore interactions into calls to a server API @done(25-01-27 20:25)
+    ☐ Implement logic for handling dates and project value.
+    ☐ When a project is deleted, all of its samples should be deleted
 
 Pages to create:
     ✔ Add client @done(25-01-13 11:07)
@@ -52,7 +29,6 @@ Pages to create:
 Styling: 
     ☐ Create layouts for forms and other common pages
 
-
 Testing: 
     ☐ Create tests in Postman for API routes
         GET Projects
@@ -71,7 +47,7 @@ Typescript:
     ☐ Make sure each page has a Typescript interface, as needed
 
 Auth:
-    ☐ 
+    ☐ Implement auth
     Create different classes of user and give them priviledges based on this
         Analyst, Admin, Client??
 Futurework:
@@ -87,4 +63,24 @@ Futurework:
     Page for selecting analyses should be linked to depending on the type of project 
     Analytes should be a property of a sample (this doesnt need to be crazy, just demonstrate functionality)
     Maybe compare these to state DOH EALs in some kind of report format
+
+API routes:
+    ✔ getAllProjects @done(25-01-20 20:50)
+    ✔ getOneProject @done(25-01-21 18:06)
+    ✔ updateProject @done(25-01-21 18:28)
+    ✔ dataEntryProject @done(25-01-21 20:32)
+    ✔ deleteProject @done(25-01-26 14:20)
+    ✔ createProject @done(25-01-26 12:51)
+
+    ✔ getSamples @done(25-01-26 14:58)
+    ✔ updateSamples @done(25-01-26 14:58)
+
+    ✔ getAllClients @done(25-01-26 12:57)
+    ✔ getOneClient @done(25-01-26 13:04)
+    ✔ updateClient @done(25-01-26 13:12)
+    ✔ deleteClient @done(25-01-26 14:20)
+    ✔ createClient @done(25-01-26 15:12)
+
+    ✔ undeleteProject @done(25-01-27 20:08)
+    ✔ undeleteClient @done(25-01-27 20:08)
         
